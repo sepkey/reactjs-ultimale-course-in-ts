@@ -1,6 +1,6 @@
-import Footer from "./project-1/Footer";
-import Header from "./project-1/Header";
-import Menu from "./project-1/Menu";
+import Footer from "./Footer";
+import Header from "./Header";
+import Menu from "./Menu";
 import "./project-1/index.css";
 
 function App() {
