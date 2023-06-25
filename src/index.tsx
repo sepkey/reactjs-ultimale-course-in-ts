@@ -41,11 +41,26 @@
 //   </React.StrictMode>
 // );
 
-////////project -4
+// ////////project -4
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p4-travel-list/App";
+// import "./p4-travel-list/index.css";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+////////project -5
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p4-travel-list/App";
-import "./p4-travel-list/index.css";
+import App from "./p5-flashcards/App";
+import "./p5-flashcards/index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
