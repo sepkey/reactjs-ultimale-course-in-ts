@@ -56,11 +56,25 @@
 //   </React.StrictMode>
 // );
 
-////////project -5
+// ////////project -5
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p5-flashcards/App";
+// import "./p5-flashcards/index.css";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+////////project -6
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p5-flashcards/App";
-import "./p5-flashcards/index.css";
+import App from "./p6-challenge2/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
