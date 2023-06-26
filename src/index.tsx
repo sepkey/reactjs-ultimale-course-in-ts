@@ -42,19 +42,19 @@
 // );
 
 // ////////project -4
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// import App from "./p4-travel-list/App";
-// import "./p4-travel-list/index.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./p4-travel-list/App";
+import "./p4-travel-list/index.css";
 
-// const root = ReactDOM.createRoot(
-//   document.getElementById("root") as HTMLElement
-// );
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
 // ////////project -5
 // import React from "react";
@@ -71,16 +71,16 @@
 //   </React.StrictMode>
 // );
 
-////////project -6
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./p6-challenge2/App";
+// ////////project -6
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p6-challenge2/App";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
