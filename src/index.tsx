@@ -41,20 +41,20 @@
 //   </React.StrictMode>
 // );
 
-// ////////project -4
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./p4-travel-list/App";
-import "./p4-travel-list/index.css";
+// // ////////project -4
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p4-travel-list/App";
+// import "./p4-travel-list/index.css";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
 
 // ////////project -5
 // import React from "react";
@@ -84,3 +84,17 @@ root.render(
 //     <App />
 //   </React.StrictMode>
 // );
+
+////////project -7
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./p7-accordion/App";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
