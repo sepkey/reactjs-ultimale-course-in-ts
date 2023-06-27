@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import { Button } from "./Button";
 
 const messages = [
@@ -26,9 +26,7 @@ function App() {
             <div className={step >= 2 ? "active" : ""}>2</div>
             <div className={step >= 3 ? "active" : ""}>3</div>
           </div>
-          <p className="message">
-            Step {step}: {messages[step - 1]}
-          </p>
+          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
           <div className="buttons">
             <Button bgColor="#7950f0" txtColor="#fff" onClick={handlePrevious}>
               previous <span>👈</span>
@@ -44,3 +42,15 @@ function App() {
 }
 
 export default App;
+
+type StepMessageProps = {
+  step: number;
+};
+function StepMessage({ step, children }: PropsWithChildren<StepMessageProps>) {
+  return (
+    <div className="message">
+      <h3> Step {step}:</h3>
+      {children}
+    </div>
+  );
+}
