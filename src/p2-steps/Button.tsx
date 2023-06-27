@@ -1,9 +1,9 @@
-import { PropsWithChildren } from "react";
+import { MouseEventHandler, PropsWithChildren } from "react";
 
 type Props = {
   txtColor: string;
   bgColor: string;
-  onClick: () => void;
+  onClick: MouseEventHandler;
 };
 
 export function Button({
