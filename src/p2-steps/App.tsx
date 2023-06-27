@@ -1,5 +1,6 @@
-import { PropsWithChildren, useState } from "react";
+import { useState } from "react";
 import { Button } from "./Button";
+import { StepMessage } from "./StepMessage";
 
 const messages = [
   "Learn React ⚛️",
@@ -42,15 +43,3 @@ function App() {
 }
 
 export default App;
-
-type StepMessageProps = {
-  step: number;
-};
-function StepMessage({ step, children }: PropsWithChildren<StepMessageProps>) {
-  return (
-    <div className="message">
-      <h3> Step {step}:</h3>
-      {children}
-    </div>
-  );
-}
