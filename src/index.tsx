@@ -85,10 +85,24 @@
 //   </React.StrictMode>
 // );
 
+// ////////project -7
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p7-accordion/App";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
 ////////project -7
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p7-accordion/App";
+import App from "./p8-challenge3/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
