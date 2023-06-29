@@ -91,6 +91,15 @@ export default function App() {
   );
 }
 
+// function Navbar({ children }: PropsWithChildren) {
+//   return (
+//     <nav className="nav-bar">
+//       <Logo />
+//       {children}
+//     </nav>
+//   );
+// }
+
 function Navbar({ children }: PropsWithChildren) {
   return (
     <nav className="nav-bar">
