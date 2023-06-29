@@ -70,21 +70,32 @@ const average = (arr: number[]) =>
 
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatched] = useState(tempWatchedData);
 
   return (
     <>
-      <Navbar movies={movies} />
-      <Main movies={movies} />
+      <Navbar>
+        <Search />
+        <NumResults movies={movies} />
+      </Navbar>
+      <Main>
+        <Box>
+          <MoviesList movies={movies} />
+        </Box>
+        <Box>
+          <Summary watched={watched} />
+          <WatchedList watched={watched} />
+        </Box>
+      </Main>
     </>
   );
 }
 
-function Navbar({ movies }: { movies: MovieType[] }) {
+function Navbar({ children }: PropsWithChildren) {
   return (
     <nav className="nav-bar">
       <Logo />
-      <Search />
-      <NumResults movies={movies} />
+      {children}
     </nav>
   );
 }
@@ -120,21 +131,8 @@ function NumResults({ movies }: { movies: MovieType[] }) {
   );
 }
 
-function Main({ movies }: { movies: MovieType[] }) {
-  return (
-    <main className="main">
-      <MoviesBox movies={movies} />
-      <WatchedBox />
-    </main>
-  );
-}
-
-function MoviesBox({ movies }: { movies: MovieType[] }) {
-  return (
-    <Box>
-      <MoviesList movies={movies} />
-    </Box>
-  );
+function Main({ children }: PropsWithChildren) {
+  return <main className="main">{children}</main>;
 }
 
 type ListProps = {
@@ -165,16 +163,6 @@ function Movie({ movie }: MovieProps) {
         </p>
       </div>
     </li>
-  );
-}
-
-function WatchedBox() {
-  const [watched, setWatched] = useState(tempWatchedData);
-  return (
-    <Box>
-      <Summary watched={watched} />
-      <WatchedList watched={watched} />
-    </Box>
   );
 }
 
