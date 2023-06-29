@@ -113,10 +113,24 @@
 //   </React.StrictMode>
 // );
 
-////////project -9
+// ////////project -9
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p9-eat-n-split/App";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+////////project -10
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p9-eat-n-split/App";
+import App from "./p10-usepopcorn/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
