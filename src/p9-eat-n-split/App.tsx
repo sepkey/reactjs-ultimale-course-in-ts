@@ -1,6 +1,11 @@
+import { FormSplitBill } from "./FormSplitBill";
 import "./index.css";
-import { MouseEventHandler, PropsWithChildren, useState } from "react";
-type Person = { id: number; name: string; image: string; balance: number };
+import { useState } from "react";
+import { Person } from "./types";
+import { FormAddFriend } from "./FormAddFriend";
+import { Button } from "./Button";
+import { Friendslist } from "./Friendslist";
+
 const initialFriends: Person[] = [
   {
     id: 118836,
@@ -23,109 +28,54 @@ const initialFriends: Person[] = [
 ];
 
 export default function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [showAddFriend, setShowAddFriend] = useState(false);
+  const [friends, setFriends] = useState<Person[]>(initialFriends);
+  const [selected, setSelected] = useState<Person | null>(null);
+
+  function handleShowFriend() {
+    setShowAddFriend((o) => !o);
+  }
+
+  function handleAddFriend(friend: Person) {
+    setFriends((friends) => [...friends, friend]);
+    setShowAddFriend(false);
+  }
+
+  function handleSelection(friend: Person) {
+    setSelected((cur) => (cur?.id === friend.id ? null : friend));
+    setShowAddFriend(false);
+  }
+
+  function handleUpdateBalance(balance: number) {
+    setFriends((friends) =>
+      friends.map((friend) =>
+        friend.id === selected?.id
+          ? { ...friend, balance: friend.balance + balance }
+          : friend
+      )
+    );
+    setSelected(null);
+  }
+
   return (
     <div className="app">
       <div className="sidebar">
-        <Friendslist />
-        {isOpen ? (
-          <>
-            <FormAddFriend />
-            <Button onClick={() => setIsOpen((o) => !o)}>Close</Button>
-          </>
-        ) : (
-          <Button onClick={() => setIsOpen((o) => !o)}>Add friend</Button>
-        )}
+        <Friendslist
+          friends={friends}
+          onSelection={handleSelection}
+          selected={selected}
+        />
+        {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
+        <Button onClick={handleShowFriend}>
+          {showAddFriend ? "close" : "Add friend"}
+        </Button>
       </div>
-      <FormSplitBill />
+      {selected && (
+        <FormSplitBill
+          selected={selected}
+          onUpdateBalance={handleUpdateBalance}
+        />
+      )}
     </div>
-  );
-}
-
-function Friendslist() {
-  const friends = initialFriends;
-  return (
-    <ul>
-      {friends.map((friend) => (
-        <Friend key={friend.id} friend={friend} />
-      ))}
-    </ul>
-  );
-}
-
-type FriendProps = {
-  friend: Person;
-};
-
-function Friend({ friend }: FriendProps) {
-  return (
-    <li>
-      <img src={friend.image} alt={friend.name} />
-      <h3>{friend.name}</h3>
-      {friend.balance < 0 && (
-        <p className="red">
-          You owe {friend.name} ${Math.abs(friend.balance)}.
-        </p>
-      )}
-      {friend.balance > 0 && (
-        <p className="green">
-          {friend.name} owes you ${Math.abs(friend.balance)}.
-        </p>
-      )}
-      {friend.balance === 0 && <p>You and {friend.name} are even.</p>}
-
-      <Button onClick={() => {}}>Select</Button>
-    </li>
-  );
-}
-
-type ButtonProps = {
-  onClick: MouseEventHandler;
-};
-
-function Button({ onClick, children }: PropsWithChildren<ButtonProps>) {
-  return (
-    <button onClick={onClick} className="button">
-      {children}
-    </button>
-  );
-}
-
-function FormAddFriend() {
-  return (
-    <form className="form-add-friend">
-      <label htmlFor="name">👩🏼‍🤝‍👩🏻 Friend name</label>
-      <input id="name" type="text" />
-
-      <label htmlFor="image">📸 Image URL</label>
-      <input type="url" />
-
-      <Button onClick={() => {}}>Add</Button>
-    </form>
-  );
-}
-
-function FormSplitBill() {
-  return (
-    <form className="form-split-bill">
-      <h2>split a bill with X</h2>
-
-      <label htmlFor="bill">💰 Bill value</label>
-      <input id="bill" type="text" />
-
-      <label htmlFor="your">👩 Your expense</label>
-      <input id="your" type="text" />
-
-      <label htmlFor="friend">👩🏼‍🤝‍👩🏻 X's expense</label>
-      <input disabled id="friend" type="text" />
-
-      <label htmlFor="pay">🤑 Who is paying the bill?</label>
-      <select id="pay">
-        <option value="user">you</option>
-        <option value={"X"}>X</option>
-      </select>
-
-      <Button onClick={() => {}}>Split bill</Button>
-    </form>
   );
 }
