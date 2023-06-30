@@ -131,8 +131,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./p10-usepopcorn/App";
-import StarRating from "./p10-usepopcorn/StarRating";
-import { useState } from "react";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
