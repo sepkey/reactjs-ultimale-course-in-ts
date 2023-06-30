@@ -130,13 +130,14 @@
 ////////project -10
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p10-usepopcorn/App";
+// import App from "./p10-usepopcorn/App";
+import StarRating from "./p10-usepopcorn/StarRating";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <StarRating maxRating={10} />
   </React.StrictMode>
 );
