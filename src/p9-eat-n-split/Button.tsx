@@ -1,9 +1,8 @@
-import { MouseEventHandler, PropsWithChildren } from "react";
-export type Props = {
-  onClick?: MouseEventHandler;
-};
+import { ComponentPropsWithoutRef } from "react";
 
-export function Button({ onClick, children }: PropsWithChildren<Props>) {
+type ButtonProps = ComponentPropsWithoutRef<"button">;
+
+export function Button({ onClick, children }: ButtonProps) {
   return (
     <button onClick={onClick} className="button">
       {children}

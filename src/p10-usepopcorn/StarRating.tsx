@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-////////////////////////styling
 const containerStyle = {
   display: "flex",
   alignItems: "center",
@@ -11,53 +10,79 @@ const starContainerStyle = {
   display: "flex",
 };
 
-const textStyle = {
-  lineHeight: "1",
-  margin: "0",
-};
-
-const starStyle = {
-  width: "24px",
-  height: "24px",
-  cursor: "pointer",
-  display: "block",
-};
-
-////////////////////////type
 type Props = {
   maxRating: number;
+  onSetRating: Dispatch<SetStateAction<number>>;
+  color?: string;
+  size?: number;
+  className?: string;
+  messages?: string[];
+  defaultRating?: number;
 };
+
+export default function StarRating({
+  maxRating = 5,
+  color = "#fcc419",
+  size = 48,
+  className = "",
+  messages = [],
+  defaultRating = 0,
+  onSetRating,
+}: Props) {
+  const [rating, setRating] = useState(defaultRating);
+  const [tempRating, setTempRating] = useState(0);
+
+  function handleRating(rating: number) {
+    setRating(rating);
+    onSetRating(rating);
+  }
+  const textStyle = {
+    lineHeight: "1",
+    margin: "0",
+    color,
+    fontSize: `${size / 2}px`,
+  };
+
+  return (
+    <div style={containerStyle} className={className}>
+      <div style={starContainerStyle}>
+        {Array.from({ length: maxRating }, (_, i) => (
+          <Star
+            key={i}
+            full={tempRating ? i + 1 <= tempRating : i + 1 <= rating}
+            onRate={() => handleRating(i + 1)}
+            onHoverIn={() => setTempRating(i + 1)}
+            onHoverOut={() => setTempRating(0)}
+            color={color}
+            size={size}
+          />
+        ))}
+      </div>
+      <p style={textStyle}>
+        {messages.length === maxRating
+          ? messages[tempRating ? tempRating - 1 : rating - 1]
+          : tempRating || rating || ""}
+      </p>
+    </div>
+  );
+}
 
 type StarProps = {
   onRate: () => void;
   onHoverIn: () => void;
   onHoverOut: () => void;
   full: boolean;
+  color?: string;
+  size?: number;
 };
 
-export default function StarRating({ maxRating = 5 }: Props) {
-  const [rating, setRating] = useState(0);
-  const [tempRating, setTempRating] = useState(0);
-
-  return (
-    <div style={containerStyle}>
-      <div style={starContainerStyle}>
-        {Array.from({ length: maxRating }, (_, i) => (
-          <Star
-            key={i}
-            full={tempRating ? i + 1 <= tempRating : i + 1 <= rating}
-            onRate={() => setRating(i + 1)}
-            onHoverIn={() => setTempRating(i + 1)}
-            onHoverOut={() => setTempRating(0)}
-          />
-        ))}
-      </div>
-      <p style={textStyle}>{tempRating || rating || ""}</p>
-    </div>
-  );
-}
-
-function Star({ onRate, onHoverIn, onHoverOut, full }: StarProps) {
+function Star({ onRate, onHoverIn, onHoverOut, full, color, size }: StarProps) {
+  const starStyle = {
+    width: `${size}px`,
+    height: `${size}px`,
+    cursor: "pointer",
+    display: "block",
+  };
   return (
     <span
       role="button"
@@ -70,8 +95,8 @@ function Star({ onRate, onHoverIn, onHoverOut, full }: StarProps) {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
-          fill="#000"
-          stroke="#000"
+          fill={color}
+          stroke={color}
         >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
@@ -80,7 +105,7 @@ function Star({ onRate, onHoverIn, onHoverOut, full }: StarProps) {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke="#000"
+          stroke={color}
         >
           <path
             strokeLinecap="round"
@@ -91,5 +116,20 @@ function Star({ onRate, onHoverIn, onHoverOut, full }: StarProps) {
         </svg>
       )}
     </span>
+  );
+}
+
+export function Test() {
+  const [movieRating, setMovieRating] = useState(0);
+  return (
+    <div>
+      <StarRating
+        onSetRating={setMovieRating}
+        maxRating={5}
+        messages={["terrible", "bad", "okay", "good", "amazing"]}
+        defaultRating={3}
+      />
+      movie rating is {movieRating}
+    </div>
   );
 }
