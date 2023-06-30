@@ -127,10 +127,26 @@
 //   </React.StrictMode>
 // );
 
+// ////////project -10
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p10-usepopcorn/App";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     {/* <Test /> */}
+//     <App />
+//   </React.StrictMode>
+// );
+
 ////////project -10
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p10-usepopcorn/App";
+import App from "./p11-text-expander/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -138,7 +154,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    {/* <Test /> */}
     <App />
   </React.StrictMode>
 );
