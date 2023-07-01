@@ -143,10 +143,26 @@
 //   </React.StrictMode>
 // );
 
-////////project -10
+// ////////project -11
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p11-text-expander/App";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+////////project -12
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p11-text-expander/App";
+import App from "./p12-how-react-work/App";
+import "./p12-how-react-work/index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
