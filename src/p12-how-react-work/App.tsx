@@ -45,7 +45,10 @@ function Tabbed({ content }: TabbedP) {
       </div>
 
       {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab) as Content} /> // we neet here type assertion because of at
+        <TabContent
+          key={content.at(activeTab)?.summary}
+          item={content.at(activeTab) as Content}
+        /> // we need here type assertion because of at
       ) : (
         <DifferentContent />
       )}
