@@ -72,6 +72,7 @@ export default function App() {
       </div>
       {selected && (
         <FormSplitBill
+          key={selected.id}
           selected={selected}
           onUpdateBalance={handleUpdateBalance}
         />
