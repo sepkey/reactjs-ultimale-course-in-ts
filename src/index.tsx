@@ -158,11 +158,26 @@
 //   </React.StrictMode>
 // );
 
-////////project -12
+// ////////project -12
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p12-how-react-work/App";
+// import "./p12-how-react-work/index.css";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+////////project -13
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p12-how-react-work/App";
-import "./p12-how-react-work/index.css";
+import App from "./p13-usepopcorn/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
