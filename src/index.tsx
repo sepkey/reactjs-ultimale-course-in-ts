@@ -113,19 +113,19 @@
 //   </React.StrictMode>
 // );
 
-////////project -9
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./p9-eat-n-split/App";
+// ////////project -9
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p9-eat-n-split/App";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
 
 // ////////project -10
 // import React from "react";
@@ -158,18 +158,18 @@ root.render(
 //   </React.StrictMode>
 // );
 
-// ////////project -12
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// import App from "./p12-how-react-work/App";
-// import "./p12-how-react-work/index.css";
+////////project -12
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./p12-how-react-work/App";
+import "./p12-how-react-work/index.css";
 
-// const root = ReactDOM.createRoot(
-//   document.getElementById("root") as HTMLElement
-// );
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
