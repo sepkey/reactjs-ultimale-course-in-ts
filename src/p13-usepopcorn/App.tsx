@@ -71,11 +71,20 @@ export default function App() {
   const [watched, setWatched] = useState(tempWatchedData);
 
   useEffect(() => {
+    let cancel = false;
     setIsloading(true);
     getMovies()
-      .then(setMovies)
+      .then((data) => {
+        if (!cancel) {
+          setMovies(data);
+        }
+      })
       .catch((err) => setError(err.message))
       .finally(() => setIsloading(false));
+
+    return () => {
+      cancel = true;
+    };
   }, []);
 
   return (

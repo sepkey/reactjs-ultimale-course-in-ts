@@ -1,7 +1,7 @@
 import { MovieType } from "./types";
 
 const API_KEY = "b45032a7";
-const query = "ferfrrrg";
+const query = "interstellar";
 
 export async function getMovies() {
   const response = await fetch(
@@ -12,6 +12,7 @@ export async function getMovies() {
     throw new Error("Something went wrong whith fetching movies!");
 
   const data = await response.json();
+
   const body = data.Search as unknown;
 
   assertIsMovies(body);
