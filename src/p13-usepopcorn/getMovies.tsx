@@ -1,9 +1,9 @@
 import { MovieType } from "./types";
 
 const API_KEY = "b45032a7";
-const query = "interstellar";
+// const tempQuery = "interstellar";
 
-export async function getMovies() {
+export async function getMovies(query: string) {
   const response = await fetch(
     `http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`
   );

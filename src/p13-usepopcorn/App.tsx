@@ -67,13 +67,21 @@ export default function App() {
   const [movies, setMovies] = useState<MovieType[]>([]);
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState("");
-
+  const [query, setQuery] = useState("interstellar");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [watched, setWatched] = useState(tempWatchedData);
 
   useEffect(() => {
     let cancel = false;
+    if (query.length < 3) {
+      setMovies([]);
+      setError("");
+      return;
+    }
+
     setIsloading(true);
-    getMovies()
+    setError("");
+    getMovies(query)
       .then((data) => {
         if (!cancel) {
           setMovies(data);
@@ -85,23 +93,41 @@ export default function App() {
     return () => {
       cancel = true;
     };
-  }, []);
+  }, [query]);
 
+  function handleSelectMovie(id: string) {
+    setSelectedId((selectedId) => (id === selectedId ? null : id));
+  }
+
+  function handleCloseDetaild() {
+    setSelectedId(null);
+  }
   return (
     <>
       <Navbar>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </Navbar>
       <Main>
         <Box>
           {isLoading && <Loader />}
-          {!isLoading && !error && <MoviesList movies={movies} />}
+          {!isLoading && !error && (
+            <MoviesList movies={movies} onSelectMovie={handleSelectMovie} />
+          )}
           {error && <ErrorMessage msg={error} />}
         </Box>
         <Box>
-          <Summary watched={watched} />
-          <WatchedList watched={watched} />
+          {selectedId ? (
+            <MovieDetails
+              onCloseDetails={handleCloseDetaild}
+              selectedId={selectedId}
+            />
+          ) : (
+            <>
+              <Summary watched={watched} />
+              <WatchedList watched={watched} />
+            </>
+          )}
         </Box>
       </Main>
     </>
@@ -138,9 +164,11 @@ function Logo() {
   );
 }
 
-function Search() {
-  const [query, setQuery] = useState("");
-
+type SearchProps = {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+};
+function Search({ query, setQuery }: SearchProps) {
   return (
     <input
       className="search"
@@ -166,12 +194,13 @@ function Main({ children }: PropsWithChildren) {
 
 type ListProps = {
   movies: MovieType[];
+  onSelectMovie: (id: string) => void;
 };
-function MoviesList({ movies }: ListProps) {
+function MoviesList({ movies, onSelectMovie }: ListProps) {
   return (
-    <ul className="list">
+    <ul className="list list-movies">
       {movies?.map((movie) => (
-        <Movie key={movie.imdbID} movie={movie} />
+        <Movie key={movie.imdbID} movie={movie} onSelectMovie={onSelectMovie} />
       ))}
     </ul>
   );
@@ -179,10 +208,11 @@ function MoviesList({ movies }: ListProps) {
 
 type MovieProps = {
   movie: MovieType;
+  onSelectMovie: (id: string) => void;
 };
-function Movie({ movie }: MovieProps) {
+function Movie({ movie, onSelectMovie }: MovieProps) {
   return (
-    <li>
+    <li onClick={() => onSelectMovie(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
@@ -279,6 +309,22 @@ function Box({ children }: PropsWithChildren) {
         {isOpen ? "–" : "+"}
       </button>
       {isOpen && children}
+    </div>
+  );
+}
+
+type MovieDetailsProps = {
+  selectedId: string | null;
+  onCloseDetails: () => void;
+};
+
+function MovieDetails({ selectedId, onCloseDetails }: MovieDetailsProps) {
+  return (
+    <div className="details">
+      <button className="btn-back" onClick={onCloseDetails}>
+        &larr;
+      </button>
+      {selectedId}
     </div>
   );
 }
