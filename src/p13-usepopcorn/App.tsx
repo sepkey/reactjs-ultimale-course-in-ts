@@ -1,7 +1,9 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 import "./index.css";
 import { getMovies } from "./getMovies";
-import { MovieType } from "./types";
+import { MovieType, SelectedMovie } from "./types";
+import { getMovieDetails } from "./getMovieDetails";
+import StarRating from "./StarRating";
 
 type WatchedMovieType = {
   imdbID: string;
@@ -67,7 +69,7 @@ export default function App() {
   const [movies, setMovies] = useState<MovieType[]>([]);
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState("");
-  const [query, setQuery] = useState("interstellar");
+  const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [watched, setWatched] = useState(tempWatchedData);
 
@@ -319,12 +321,79 @@ type MovieDetailsProps = {
 };
 
 function MovieDetails({ selectedId, onCloseDetails }: MovieDetailsProps) {
+  const [movie, setMovie] = useState<Partial<SelectedMovie>>({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    Poster: poster,
+    Title: title,
+    Year: year,
+    Runtime: runtime,
+    imdbRating,
+    Actors: actors,
+    Director: director,
+    Genre: genre,
+    Plot: plot,
+    Released: released,
+  } = movie;
+
+  console.log(title, year);
+  useEffect(() => {
+    let cancel = false;
+    setIsLoading(true);
+    getMovieDetails(selectedId!)
+      .then((data) => {
+        if (!cancel) {
+          setMovie(data);
+        }
+      })
+      .finally(() => setIsLoading(false));
+
+    return () => {
+      cancel = true;
+    };
+  }, [selectedId]);
+
   return (
     <div className="details">
-      <button className="btn-back" onClick={onCloseDetails}>
-        &larr;
-      </button>
-      {selectedId}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <header>
+            <button className="btn-back" onClick={onCloseDetails}>
+              &larr;
+            </button>
+            <img src={poster} alt={`poster of ${movie.Title} movie`} />
+            <div className="details-overview">
+              <h2>{title}</h2>
+              <p>
+                {released} &bull; {runtime}{" "}
+              </p>
+              <p>{genre}</p>
+              <p>
+                <span>⭐</span>
+                {imdbRating} imdb rating
+              </p>
+            </div>
+          </header>
+
+          <section>
+            <div className="rating">
+              <StarRating
+                maxRating={10}
+                size={24}
+                onSetRating={() => console.log("hey")}
+              />
+            </div>
+            <p>
+              <em> {plot}</em>
+            </p>
+            <p>Starring {actors}</p>
+            <p>Directed by {director}</p>
+          </section>
+        </>
+      )}
     </div>
   );
 }

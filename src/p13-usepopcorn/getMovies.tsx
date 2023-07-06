@@ -1,7 +1,6 @@
 import { MovieType } from "./types";
 
 const API_KEY = "b45032a7";
-// const tempQuery = "interstellar";
 
 export async function getMovies(query: string) {
   const response = await fetch(
