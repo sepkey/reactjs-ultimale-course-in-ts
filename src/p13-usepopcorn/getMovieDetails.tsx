@@ -1,4 +1,4 @@
-import { SelectedMovie } from "./types";
+import { MovieDetail } from "./types";
 
 const API_KEY = "b45032a7";
 
@@ -16,7 +16,7 @@ export async function getMovieDetails(selectedId: string) {
   return data;
 }
 
-export function assertIsMovie(movie: unknown): asserts movie is SelectedMovie {
+export function assertIsMovie(movie: unknown): asserts movie is MovieDetail {
   if (!movie) {
     throw new Error("movie is null or undefined");
   }

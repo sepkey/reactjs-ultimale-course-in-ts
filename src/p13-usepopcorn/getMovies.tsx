@@ -1,4 +1,4 @@
-import { MovieType } from "./types";
+import { MovieBrief } from "./types";
 
 const API_KEY = "b45032a7";
 
@@ -20,7 +20,7 @@ export async function getMovies(query: string) {
 
 export function assertIsMovies(
   moviesData: unknown
-): asserts moviesData is MovieType[] {
+): asserts moviesData is MovieBrief[] {
   if (!Array.isArray(moviesData)) {
     throw new Error("movies isn't an array");
   }

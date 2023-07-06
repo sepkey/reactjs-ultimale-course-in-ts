@@ -1,4 +1,4 @@
-export type MovieType = {
+export type MovieBrief = {
   imdbID: string;
   Title: string;
   Year: string;
@@ -6,7 +6,7 @@ export type MovieType = {
   Type?: string;
 };
 
-export type SelectedMovie = {
+export type MovieDetail = {
   Title: string;
   Year: string;
   Poster: string;
@@ -18,4 +18,14 @@ export type SelectedMovie = {
   Actors: string;
   Director: string;
   Genre: string;
+};
+
+export type MovieWatched = {
+  imdbID: string;
+  Title: string;
+  Year: string;
+  Poster: string;
+  runtime: number;
+  imdbRating: number;
+  userRating: number;
 };
