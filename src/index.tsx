@@ -174,10 +174,25 @@
 //   </React.StrictMode>
 // );
 
-////////project -13
+// ////////project -13
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p13-usepopcorn/App";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+////////project -14
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p13-usepopcorn/App";
+import App from "./p14-challenge4/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
