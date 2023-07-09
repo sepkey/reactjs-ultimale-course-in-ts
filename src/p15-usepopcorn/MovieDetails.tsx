@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MovieDetail, MovieWatched } from "./types";
 import { getMovieDetails } from "./getMovieDetails";
 import StarRating from "./StarRating";
@@ -19,6 +19,16 @@ export function MovieDetails({
   const [movie, setMovie] = useState<Partial<MovieDetail>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState(0);
+  const countRef = useRef(0);
+
+  useEffect(
+    function () {
+      if (userRating) {
+        countRef.current += 1;
+      }
+    },
+    [userRating]
+  );
 
   const iswatched = watched.map((movie) => movie.imdbID).includes(selectedId!);
   const watchedUserRating = watched.find(
@@ -90,6 +100,7 @@ export function MovieDetails({
       runtime: Number(runtime?.split(" ")[0]),
       Year: year!,
       userRating: userRating,
+      counteRating: countRef.current,
     };
     onAddWatched(newWatchedMovie);
     onCloseDetails();

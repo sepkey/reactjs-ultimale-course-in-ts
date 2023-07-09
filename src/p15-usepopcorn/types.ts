@@ -28,4 +28,5 @@ export type MovieWatched = {
   runtime: number;
   imdbRating: number;
   userRating: number;
+  counteRating?: number;
 };
