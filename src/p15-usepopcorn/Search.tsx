@@ -13,9 +13,28 @@ export function Search({ query, setQuery }: Props) {
   // }, []);
 
   const inputEl = useRef<HTMLInputElement>(null);
+
   useEffect(function () {
     inputEl.current?.focus();
   }, []);
+
+  useEffect(
+    function () {
+      function callback(e: KeyboardEvent) {
+        if (document.activeElement === inputEl.current) return;
+
+        if (e.code === "Enter") {
+          inputEl.current?.focus();
+          setQuery("");
+        }
+      }
+
+      document.addEventListener("keydown", callback);
+      return () => document.removeEventListener("keydown", callback);
+    },
+    [setQuery]
+  );
+
   return (
     <input
       ref={inputEl}
