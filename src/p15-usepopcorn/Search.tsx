@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useKey } from "./useKey";
 
 export type Props = {
   query: string;
@@ -18,22 +19,28 @@ export function Search({ query, setQuery }: Props) {
     inputEl.current?.focus();
   }, []);
 
-  useEffect(
-    function () {
-      function callback(e: KeyboardEvent) {
-        if (document.activeElement === inputEl.current) return;
+  useKey("Enter", function () {
+    if (document.activeElement === inputEl.current) return;
+    inputEl.current?.focus();
+    setQuery("");
+  });
 
-        if (e.code === "Enter") {
-          inputEl.current?.focus();
-          setQuery("");
-        }
-      }
+  // useEffect(
+  //   function () {
+  //     function callback(e: KeyboardEvent) {
+  //       if (document.activeElement === inputEl.current) return;
 
-      document.addEventListener("keydown", callback);
-      return () => document.removeEventListener("keydown", callback);
-    },
-    [setQuery]
-  );
+  //       if (e.code === "Enter") {
+  //         inputEl.current?.focus();
+  //         setQuery("");
+  //       }
+  //     }
+
+  //     document.addEventListener("keydown", callback);
+  //     return () => document.removeEventListener("keydown", callback);
+  //   },
+  //   [setQuery]
+  // );
 
   return (
     <input

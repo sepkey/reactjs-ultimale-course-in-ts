@@ -3,6 +3,7 @@ import { MovieDetail, MovieWatched } from "./types";
 import { getMovieDetails } from "./getMovieDetails";
 import StarRating from "./StarRating";
 import { Loader } from "./Loader";
+import { useKey } from "./useKey";
 type Props = {
   selectedId: string | null;
   onCloseDetails: () => void;
@@ -77,19 +78,7 @@ export function MovieDetails({
     [title]
   );
 
-  useEffect(
-    function () {
-      function callback(e: KeyboardEvent) {
-        if (e.code === "Escape") {
-          onCloseDetails();
-        }
-      }
-
-      document.addEventListener("keydown", callback);
-      return () => document.removeEventListener("keydown", callback);
-    },
-    [onCloseDetails]
-  );
+  useKey("Escape", onCloseDetails);
 
   function handleAdd() {
     const newWatchedMovie = {
