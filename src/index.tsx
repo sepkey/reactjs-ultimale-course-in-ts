@@ -204,10 +204,25 @@
 //   </React.StrictMode>
 // );
 
-////////project -15
+// ////////project -15
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p15-usepopcorn/App";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+////////project -16
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p15-usepopcorn/App";
+import App from "./p16-challenge5/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
