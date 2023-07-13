@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 
 function getWeatherIcon(wmoCode: number) {
   const icons = new Map([
@@ -34,14 +34,12 @@ function formatDay(dateStr: string) {
 }
 
 type Props = {};
-
 type WeatherDaily = {
   temperature_2m_max: number[];
   temperature_2m_min: number[];
   time: string[];
   weathercode: number[];
 };
-
 type State = {
   location: string;
   isLoading: boolean;
@@ -50,14 +48,18 @@ type State = {
 };
 
 export default class App extends React.Component<Props, State> {
-  state: State = {
-    location: "lisbon",
-    isLoading: false,
-    displayLocation: "",
-    weather: {},
-  };
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      location: "lisbon",
+      isLoading: false,
+      displayLocation: "",
+      weather: {},
+    };
+    this.fetchWeather = this.fetchWeather.bind(this);
+  }
 
-  fetchWeather = async () => {
+  async fetchWeather() {
     try {
       this.setState({ isLoading: true });
       const geoRes = await fetch(
@@ -85,19 +87,20 @@ export default class App extends React.Component<Props, State> {
     } finally {
       this.setState({ isLoading: false });
     }
-  };
-
-  handleChangeLocation = (e: React.ChangeEvent<HTMLInputElement>) =>
-    this.setState({ location: e.target.value });
+  }
 
   render() {
     return (
       <div className="app">
         <h1>classy weather</h1>
-        <Input
-          location={this.state.location}
-          onChangeLocation={this.handleChangeLocation}
-        />
+        <div>
+          <input
+            type="text"
+            value={this.state.location}
+            onChange={(e) => this.setState({ location: e.target.value })}
+            placeholder="Search form location..."
+          />
+        </div>
         <button onClick={this.fetchWeather}>Get weather</button>
         {this.state.isLoading && <p className="loader">Loading...</p>}
 
@@ -112,24 +115,6 @@ export default class App extends React.Component<Props, State> {
   }
 }
 
-type InputProps = {
-  location: string;
-  onChangeLocation: React.ChangeEventHandler<HTMLInputElement>;
-};
-class Input extends React.Component<InputProps, any> {
-  render() {
-    return (
-      <div>
-        <input
-          type="text"
-          value={this.props.location}
-          onChange={this.props.onChangeLocation}
-          placeholder="Search form location..."
-        />
-      </div>
-    );
-  }
-}
 type WeatherProps = {
   weather: Partial<WeatherDaily>;
   location: string;
