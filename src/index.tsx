@@ -234,27 +234,11 @@
 //   </React.StrictMode>
 // );
 
-////////project -17
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./p17-date-counter/App";
-import "./p17-date-counter/index.css";
-
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// ////////project -18
+// ////////project -17
 // import React from "react";
 // import ReactDOM from "react-dom/client";
-// import App from "./p18-classy-weather/App";
-// import "./p18-classy-weather/index.css";
+// import App from "./p17-date-counter/App";
+// import "./p17-date-counter/index.css";
 
 // const root = ReactDOM.createRoot(
 //   document.getElementById("root") as HTMLElement
@@ -265,3 +249,19 @@ root.render(
 //     <App />
 //   </React.StrictMode>
 // );
+
+////////project -18
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./p18-classy-weather/App";
+import "./p18-classy-weather/index.css";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
