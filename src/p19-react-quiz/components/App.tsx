@@ -1,16 +1,18 @@
 import { useEffect, useReducer } from "react";
 import Header from "./Header";
 import Main from "./Main";
-import { QuestionType } from "./types";
+import { QuestionType } from "../types";
 import Loader from "./Loader";
 import ErrorCom from "./Error";
 import StartScreen from "./StartScreen";
 import Question from "./Question";
 
 type State = {
-  idx: number;
+  index: number;
   questions: QuestionType[] | [];
   status: "loading" | "error" | "ready" | "active" | "finished";
+  selected: null | number;
+  points: number;
 };
 
 type DataRecieved = {
@@ -26,12 +28,19 @@ type Start = {
   type: "start";
 };
 
-export type Action = DataRecieved | DataFailed | Start;
+type Select = {
+  type: "select";
+  payload: number;
+};
+
+export type Action = DataRecieved | DataFailed | Start | Select;
 
 const initialState: State = {
-  idx: 0,
+  index: 0,
   questions: [],
   status: "loading",
+  selected: null,
+  points: 0,
 };
 
 function reducer(state: State, action: Action): State {
@@ -42,16 +51,28 @@ function reducer(state: State, action: Action): State {
       return { ...state, status: "error" };
     case "start":
       return { ...state, status: "active" };
+    case "select":
+      const question = state.questions.at(state.index);
+      return {
+        ...state,
+        selected: action.payload,
+        points:
+          action.payload === question?.correctOption
+            ? state.points + question.points
+            : state.points,
+      };
+
     default:
       throw new Error("Unknown action");
   }
 }
 export default function App() {
-  const [{ status, questions, idx }, dispatch] = useReducer(
+  const [{ status, questions, index, selected }, dispatch] = useReducer(
     reducer,
     initialState
   );
   const numQuestions = questions.length;
+
   useEffect(function () {
     fetch("http://localhost:8000/questions")
       .then((res) => res.json())
@@ -68,7 +89,13 @@ export default function App() {
         {status === "ready" && (
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
         )}
-        {status === "active" && <Question />}
+        {status === "active" && (
+          <Question
+            question={questions[index]}
+            dispatch={dispatch}
+            selected={selected}
+          />
+        )}
       </Main>
     </div>
   );

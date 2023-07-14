@@ -269,7 +269,7 @@
 ////////project -19
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p19-react-quiz/App";
+import App from "./p19-react-quiz/components/App";
 import "./p19-react-quiz/index.css";
 
 const root = ReactDOM.createRoot(
