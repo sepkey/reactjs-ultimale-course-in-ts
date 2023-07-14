@@ -6,6 +6,7 @@ import Loader from "./Loader";
 import ErrorCom from "./Error";
 import StartScreen from "./StartScreen";
 import Question from "./Question";
+import NextButton from "./NextButton";
 
 type State = {
   index: number;
@@ -33,7 +34,11 @@ type Select = {
   payload: number;
 };
 
-export type Action = DataRecieved | DataFailed | Start | Select;
+type NextQuestion = {
+  type: "next-question";
+};
+
+export type Action = DataRecieved | DataFailed | Start | Select | NextQuestion;
 
 const initialState: State = {
   index: 0,
@@ -60,6 +65,12 @@ function reducer(state: State, action: Action): State {
           action.payload === question?.correctOption
             ? state.points + question.points
             : state.points,
+      };
+    case "next-question":
+      return {
+        ...state,
+        index: state.index + 1 < state.questions.length ? state.index + 1 : 0,
+        selected: null,
       };
 
     default:
@@ -90,11 +101,14 @@ export default function App() {
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
         )}
         {status === "active" && (
-          <Question
-            question={questions[index]}
-            dispatch={dispatch}
-            selected={selected}
-          />
+          <>
+            <Question
+              question={questions[index]}
+              dispatch={dispatch}
+              selected={selected}
+            />
+            <NextButton dispatch={dispatch} selected={selected} />
+          </>
         )}
       </Main>
     </div>
