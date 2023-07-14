@@ -5,6 +5,7 @@ import { QuestionType } from "./types";
 import Loader from "./Loader";
 import ErrorCom from "./Error";
 import StartScreen from "./StartScreen";
+import Question from "./Question";
 
 type State = {
   idx: number;
@@ -21,7 +22,11 @@ type DataFailed = {
   type: "data-failed";
 };
 
-type Action = DataRecieved | DataFailed;
+type Start = {
+  type: "start";
+};
+
+export type Action = DataRecieved | DataFailed | Start;
 
 const initialState: State = {
   idx: 0,
@@ -35,6 +40,8 @@ function reducer(state: State, action: Action): State {
       return { ...state, status: "ready", questions: action.payload };
     case "data-failed":
       return { ...state, status: "error" };
+    case "start":
+      return { ...state, status: "active" };
     default:
       throw new Error("Unknown action");
   }
@@ -58,7 +65,10 @@ export default function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <ErrorCom />}
-        {status === "ready" && <StartScreen numQuestions={numQuestions} />}
+        {status === "ready" && (
+          <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
+        )}
+        {status === "active" && <Question />}
       </Main>
     </div>
   );
