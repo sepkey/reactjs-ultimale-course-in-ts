@@ -1,9 +1,10 @@
 type Props = {
   points: number;
   maxPoints: number;
+  highscore: number;
 };
 
-export default function FinishScreen({ maxPoints, points }: Props) {
+export default function FinishScreen({ maxPoints, points, highscore }: Props) {
   const percentage = (points / maxPoints) * 100;
 
   let emoji;
@@ -18,7 +19,7 @@ export default function FinishScreen({ maxPoints, points }: Props) {
         <span>{emoji}</span> You scored <strong>{points}</strong> out of{" "}
         {maxPoints} ({Math.ceil(percentage)})%
       </p>
-      <p className="highscore">Highscore is X</p>
+      <p className="highscore">Highscore is {highscore}</p>
     </>
   );
 }

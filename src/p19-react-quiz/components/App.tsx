@@ -16,6 +16,7 @@ type State = {
   status: "loading" | "error" | "ready" | "active" | "finished";
   selected: null | number;
   points: number;
+  highscore: number;
 };
 
 type DataRecieved = {
@@ -58,6 +59,7 @@ const initialState: State = {
   index: 0,
   selected: null,
   points: 0,
+  highscore: 0,
 };
 
 function reducer(state: State, action: Action): State {
@@ -85,16 +87,16 @@ function reducer(state: State, action: Action): State {
         selected: null,
       };
     case "finish":
-      return { ...state, status: "finished" };
+      const newHighscore =
+        state.points > state.highscore ? state.points : state.highscore;
+      return { ...state, status: "finished", highscore: newHighscore };
     default:
       throw new Error("Unknown action");
   }
 }
 export default function App() {
-  const [{ status, questions, index, selected, points }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ status, questions, index, selected, points, highscore }, dispatch] =
+    useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
 
@@ -142,7 +144,11 @@ export default function App() {
         )}
 
         {status === "finished" && (
-          <FinishScreen points={points} maxPoints={maxPoints} />
+          <FinishScreen
+            points={points}
+            maxPoints={maxPoints}
+            highscore={highscore}
+          />
         )}
       </Main>
     </div>
