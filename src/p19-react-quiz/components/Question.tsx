@@ -8,6 +8,7 @@ type Props = {
   dispatch: Dispatch<Action>;
   selected: null | number;
 };
+
 export default function Question({ question, dispatch, selected }: Props) {
   return (
     <div>

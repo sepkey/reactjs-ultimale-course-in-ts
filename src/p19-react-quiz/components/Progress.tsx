@@ -1,5 +1,3 @@
-import { QuestionType } from "../types";
-
 type Props = {
   numQuestions: number;
   index: number;
