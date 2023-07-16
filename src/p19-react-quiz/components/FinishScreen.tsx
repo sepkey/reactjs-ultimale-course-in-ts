@@ -1,10 +1,19 @@
+import { Dispatch } from "react";
+import { Action } from "./App";
+
 type Props = {
   points: number;
   maxPoints: number;
   highscore: number;
+  dispatch: Dispatch<Action>;
 };
 
-export default function FinishScreen({ maxPoints, points, highscore }: Props) {
+export default function FinishScreen({
+  maxPoints,
+  points,
+  highscore,
+  dispatch,
+}: Props) {
   const percentage = (points / maxPoints) * 100;
 
   let emoji;
@@ -20,6 +29,12 @@ export default function FinishScreen({ maxPoints, points, highscore }: Props) {
         {maxPoints} ({Math.ceil(percentage)})%
       </p>
       <p className="highscore">Highscore is {highscore}</p>
+      <button
+        className="btn btn-ui"
+        onClick={() => dispatch({ type: "restart" })}
+      >
+        reset
+      </button>
     </>
   );
 }

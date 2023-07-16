@@ -44,6 +44,9 @@ type NextQuestion = {
 type Finish = {
   type: "finish";
 };
+type Restart = {
+  type: "restart";
+};
 
 export type Action =
   | DataRecieved
@@ -51,7 +54,8 @@ export type Action =
   | Start
   | Select
   | NextQuestion
-  | Finish;
+  | Finish
+  | Restart;
 
 const initialState: State = {
   questions: [],
@@ -90,6 +94,9 @@ function reducer(state: State, action: Action): State {
       const newHighscore =
         state.points > state.highscore ? state.points : state.highscore;
       return { ...state, status: "finished", highscore: newHighscore };
+
+    case "restart":
+      return { ...initialState, status: "ready", questions: state.questions };
     default:
       throw new Error("Unknown action");
   }
@@ -145,6 +152,7 @@ export default function App() {
 
         {status === "finished" && (
           <FinishScreen
+            dispatch={dispatch}
             points={points}
             maxPoints={maxPoints}
             highscore={highscore}
