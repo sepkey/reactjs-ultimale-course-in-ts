@@ -10,7 +10,6 @@ type Props = {
 
 export default function Options({ question, dispatch, selected }: Props) {
   const hasAnswered = selected !== null;
-  console.log(question);
 
   return (
     <div className="options">

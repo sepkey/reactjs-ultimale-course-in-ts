@@ -9,6 +9,10 @@ import Question from "./Question";
 import NextButton from "./NextButton";
 import Progress from "./Progress";
 import FinishScreen from "./FinishScreen";
+import Footer from "./Footer";
+import Timer from "./Timer";
+
+const SECONDS_PER_QUESTION = 30;
 
 type State = {
   index: number;
@@ -17,6 +21,7 @@ type State = {
   selected: null | number;
   points: number;
   highscore: number;
+  remainedSeconds: number | null;
 };
 
 type DataRecieved = {
@@ -47,6 +52,9 @@ type Finish = {
 type Restart = {
   type: "restart";
 };
+type Tick = {
+  type: "tick";
+};
 
 export type Action =
   | DataRecieved
@@ -55,7 +63,8 @@ export type Action =
   | Select
   | NextQuestion
   | Finish
-  | Restart;
+  | Restart
+  | Tick;
 
 const initialState: State = {
   questions: [],
@@ -64,6 +73,7 @@ const initialState: State = {
   selected: null,
   points: 0,
   highscore: 0,
+  remainedSeconds: null,
 };
 
 function reducer(state: State, action: Action): State {
@@ -73,7 +83,11 @@ function reducer(state: State, action: Action): State {
     case "data-failed":
       return { ...state, status: "error" };
     case "start":
-      return { ...state, status: "active" };
+      return {
+        ...state,
+        status: "active",
+        remainedSeconds: state.questions.length * SECONDS_PER_QUESTION,
+      };
     case "select":
       const question = state.questions.at(state.index);
       return {
@@ -97,13 +111,21 @@ function reducer(state: State, action: Action): State {
 
     case "restart":
       return { ...initialState, status: "ready", questions: state.questions };
+    case "tick":
+      return {
+        ...state,
+        remainedSeconds: state.remainedSeconds! - 1,
+        status: state.remainedSeconds === 0 ? "finished" : state.status,
+      };
     default:
       throw new Error("Unknown action");
   }
 }
 export default function App() {
-  const [{ status, questions, index, selected, points, highscore }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { status, questions, index, selected, points, highscore, remainedSeconds },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
 
@@ -141,12 +163,15 @@ export default function App() {
               dispatch={dispatch}
               selected={selected}
             />
-            <NextButton
-              dispatch={dispatch}
-              selected={selected}
-              index={index}
-              numQuestions={numQuestions}
-            />
+            <Footer>
+              <Timer remainedSeconds={remainedSeconds} dispatch={dispatch} />
+              <NextButton
+                dispatch={dispatch}
+                selected={selected}
+                index={index}
+                numQuestions={numQuestions}
+              />
+            </Footer>
           </>
         )}
 
