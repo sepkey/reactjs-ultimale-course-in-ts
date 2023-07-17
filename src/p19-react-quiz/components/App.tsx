@@ -24,6 +24,8 @@ type State = {
   remainedSeconds: number | null;
 };
 
+// type Difficulty = "easy" | "medium" | "difficult";
+
 type DataRecieved = {
   type: "data-recieved";
   payload: QuestionType[];
@@ -35,6 +37,7 @@ type DataFailed = {
 
 type Start = {
   type: "start";
+  payload: { difficulty: string; size?: number };
 };
 
 type Select = {
@@ -76,6 +79,8 @@ const initialState: State = {
   remainedSeconds: null,
 };
 
+const ceriteria = { easy: 10, medium: 20, difficult: 30 };
+
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "data-recieved":
@@ -83,9 +88,16 @@ function reducer(state: State, action: Action): State {
     case "data-failed":
       return { ...state, status: "error" };
     case "start":
+      const { size, difficulty } = action.payload;
+      const showedQuestions = [...state.questions]
+        .filter(
+          (q) => q.points === ceriteria[difficulty as keyof typeof ceriteria]
+        )
+        .slice(0, size);
       return {
         ...state,
         status: "active",
+        questions: showedQuestions,
         remainedSeconds: state.questions.length * SECONDS_PER_QUESTION,
       };
     case "select":
@@ -134,7 +146,10 @@ export default function App() {
   useEffect(function () {
     fetch("http://localhost:8000/questions")
       .then((res) => res.json())
-      .then((data) => dispatch({ type: "data-recieved", payload: data }))
+      .then((data) => {
+        // const questionsSlice = data.slice(0, 5);
+        dispatch({ type: "data-recieved", payload: data });
+      })
       .catch((err) => dispatch({ type: "data-failed" }));
   }, []);
 
