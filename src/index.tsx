@@ -266,11 +266,26 @@
 //   </React.StrictMode>
 // );
 
-////////project -19
+// ////////project -19
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p19-react-quiz/components/App";
+// import "./p19-react-quiz/index.css";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+////////project -20
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p19-react-quiz/components/App";
-import "./p19-react-quiz/index.css";
+import App from "./p20-challenge6/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
