@@ -298,10 +298,26 @@
 // );
 
 ////////project -21
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p21-worldwise/App";
+// import "./index.css";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+////////project -22
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p21-worldwise/App";
-import "./index.css";
+import App from "./p22-atomic-blog/App";
+import "./p22-atomic-blog/style.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
