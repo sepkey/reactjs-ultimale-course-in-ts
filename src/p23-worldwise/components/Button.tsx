@@ -1,8 +1,8 @@
-import { PropsWithChildren } from "react";
+import { MouseEventHandler, PropsWithChildren } from "react";
 import styles from "./Button.module.css";
 
 type Props = {
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   type: "back" | "primary" | "position";
 };
 export default function Button({
@@ -11,8 +11,8 @@ export default function Button({
   children,
 }: PropsWithChildren<Props>) {
   return (
-    <div onClick={onClick} className={`${styles.btn} ${styles[type]}`}>
+    <button onClick={onClick} className={`${styles.btn} ${styles[type]}`}>
       {children}
-    </div>
+    </button>
   );
 }

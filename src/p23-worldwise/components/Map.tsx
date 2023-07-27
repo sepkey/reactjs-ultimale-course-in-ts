@@ -12,12 +12,11 @@ import { useEffect, useState } from "react";
 import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/useGeolocation";
 import Button from "./Button";
+import useUrlPosition from "../hooks/useUrlPosition";
 
 export default function Map() {
-  const [searchParams] = useSearchParams();
-  const mapLat = searchParams.get("lat");
-  const mapLng = searchParams.get("lng");
   const [mapPosition, setMapPosition] = useState<[number, number]>([40, 0]);
+  const [mapLat, mapLng] = useUrlPosition();
   const { cities } = useCities();
   const {
     getPosition,
@@ -28,7 +27,7 @@ export default function Map() {
   useEffect(
     function () {
       if (mapLat && mapLng) {
-        setMapPosition([+mapLat, +mapLng]);
+        setMapPosition([mapLat, mapLng]);
       }
     },
     [mapLat, mapLng]
@@ -52,7 +51,7 @@ export default function Map() {
         ""
       )}
       <MapContainer
-        center={[+mapLat!, +mapLng!]}
+        center={[mapLat, mapLng]}
         zoom={6}
         scrollWheelZoom={true}
         className={styles.map}
@@ -90,7 +89,7 @@ function ChangeCenter({ position }: { position: [number, number] }) {
 function DetectClick() {
   const navigate = useNavigate();
   useMapEvents({
-    click: (e) => navigate(`form?lat=${e.latlng.lat}lng=${e.latlng.lng}`),
+    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
   });
   return null;
 }

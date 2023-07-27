@@ -13,6 +13,7 @@ type ContextType = {
   cities: CityInterface[];
   currentCity: CityInterface | undefined;
   getCity: (id: number) => Promise<void>;
+  createCity: (newCity: Partial<CityInterface>) => Promise<void>;
 };
 const CitiesContext = createContext<ContextType | null>(null);
 
@@ -49,8 +50,32 @@ function CitiesProvider({ children }: PropsWithChildren) {
       setIsloading(false);
     }
   }
+
+  async function createCity(newCity: Partial<CityInterface>) {
+    try {
+      setIsloading(true);
+      const res = await fetch(`${BASE_URL}/cities`, {
+        method: "POST",
+        body: JSON.stringify(newCity),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = (await res.json()) as CityInterface;
+      const isExisted = cities.find((item) => item.id === data.id);
+      console.log(isExisted);
+      !isExisted && setCities((prev) => [...prev, data]);
+    } catch {
+      alert("There was an error loading data");
+    } finally {
+      setIsloading(false);
+    }
+  }
+
   return (
-    <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity }}>
+    <CitiesContext.Provider
+      value={{ cities, isLoading, currentCity, getCity, createCity }}
+    >
       {children}
     </CitiesContext.Provider>
   );

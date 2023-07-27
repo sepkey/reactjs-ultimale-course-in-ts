@@ -21,7 +21,7 @@ export interface CityInterface {
     lat: number;
     lng: number;
   };
-  id: number;
+  id: number | string;
 }
 export default function App() {
   return (
