@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { CityInterface } from "../App";
+import { CityInterface } from "../models";
 const BASE_URL = "http://localhost:8000";
 
 type ContextType = {
@@ -14,8 +14,16 @@ type ContextType = {
   currentCity: CityInterface | undefined;
   getCity: (id: number) => Promise<void>;
   createCity: (newCity: Partial<CityInterface>) => Promise<void>;
+  deleteCity: (id: number) => Promise<void>;
 };
-const CitiesContext = createContext<ContextType | null>(null);
+const CitiesContext = createContext<ContextType>({
+  isLoading: false,
+  cities: [],
+  currentCity: undefined,
+  getCity: (id: number) => new Promise(() => Promise),
+  createCity: (newCity: Partial<CityInterface>) => new Promise(() => Promise),
+  deleteCity: (id: number) => new Promise(() => Promise),
+});
 
 function CitiesProvider({ children }: PropsWithChildren) {
   const [cities, setCities] = useState<CityInterface[]>([]);
@@ -30,7 +38,7 @@ function CitiesProvider({ children }: PropsWithChildren) {
         const data = (await res.json()) as CityInterface[];
         setCities(data);
       } catch {
-        alert("There was an error loading data");
+        alert("There was an error loading city");
       } finally {
         setIsloading(false);
       }
@@ -45,7 +53,7 @@ function CitiesProvider({ children }: PropsWithChildren) {
       const data = (await res.json()) as CityInterface;
       setCurrentCity(data);
     } catch {
-      alert("There was an error loading data");
+      alert("There was an error getting city");
     } finally {
       setIsloading(false);
     }
@@ -63,10 +71,24 @@ function CitiesProvider({ children }: PropsWithChildren) {
       });
       const data = (await res.json()) as CityInterface;
       const isExisted = cities.find((item) => item.id === data.id);
-      console.log(isExisted);
       !isExisted && setCities((prev) => [...prev, data]);
+      setCurrentCity(data);
     } catch {
-      alert("There was an error loading data");
+      alert("There was an error creating city");
+    } finally {
+      setIsloading(false);
+    }
+  }
+
+  async function deleteCity(id: number) {
+    try {
+      setIsloading(true);
+      await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+      });
+      setCities((cities) => cities.filter((city) => city.id !== id));
+    } catch {
+      alert("There was an error deleting data");
     } finally {
       setIsloading(false);
     }
@@ -74,7 +96,14 @@ function CitiesProvider({ children }: PropsWithChildren) {
 
   return (
     <CitiesContext.Provider
-      value={{ cities, isLoading, currentCity, getCity, createCity }}
+      value={{
+        cities,
+        isLoading,
+        currentCity,
+        getCity,
+        createCity,
+        deleteCity,
+      }}
     >
       {children}
     </CitiesContext.Provider>
@@ -82,7 +111,9 @@ function CitiesProvider({ children }: PropsWithChildren) {
 }
 
 function useCities() {
-  const context = useContext(CitiesContext) as ContextType;
+  // const context = useContext(CitiesContext) as ContextType;
+  const context = useContext(CitiesContext);
+
   if (context === undefined) throw new Error("Out of cities context");
   return context;
 }

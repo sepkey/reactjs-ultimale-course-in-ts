@@ -1,18 +1,16 @@
 import { FormEvent, useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-// import "react-datepicker/dist/react-datepicker.module.css";
 import DatePicker from "react-datepicker";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./Form.module.css";
-import Button from "./Button";
-import ButtonBack from "./ButtonBack";
-import useUrlPosition from "../hooks/useUrlPosition";
-import Message from "./Message";
-import Spinner from "./Spinner";
-// import { useCities } from "../contexts/CitiesContext";
-import { CityInterface } from "../App";
-import { useCities } from "../contexts/CitiesContext";
-import { useNavigate } from "react-router-dom";
+import useUrlPosition from "../../hooks/useUrlPosition";
+import { useCities } from "../../contexts/CitiesContext";
+import { CityInterface } from "../../models";
+import Spinner from "../common/Spinner";
+import Message from "../common/Message";
+import Button from "../common/Button";
+import ButtonBack from "../common/ButtonBack";
 
 export function convertToEmoji(countryCode: string) {
   const codePoints = countryCode
@@ -94,7 +92,6 @@ function Form() {
       position: { lat, lng },
     };
 
-    // console.log(newCity);
     await createCity(newCity);
     navigate("/app/cities");
   }

@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Map.module.css";
 import {
   MapContainer,
@@ -9,10 +9,10 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { useEffect, useState } from "react";
-import { useCities } from "../contexts/CitiesContext";
-import { useGeolocation } from "../hooks/useGeolocation";
-import Button from "./Button";
-import useUrlPosition from "../hooks/useUrlPosition";
+import useUrlPosition from "../../hooks/useUrlPosition";
+import { useCities } from "../../contexts/CitiesContext";
+import { useGeolocation } from "../../hooks/useGeolocation";
+import Button from "../common/Button";
 
 export default function Map() {
   const [mapPosition, setMapPosition] = useState<[number, number]>([40, 0]);
