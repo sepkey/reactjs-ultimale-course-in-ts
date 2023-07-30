@@ -9,6 +9,7 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { useEffect, useState } from "react";
+
 import useUrlPosition from "../../hooks/useUrlPosition";
 import { useCities } from "../../contexts/CitiesContext";
 import { useGeolocation } from "../../hooks/useGeolocation";
@@ -41,6 +42,7 @@ export default function Map() {
     },
     [geolocationposition]
   );
+
   return (
     <div className={styles.mapContainer}>
       {!geolocationposition ? (

@@ -20,15 +20,15 @@ const CitiesContext = createContext<ContextType>({
   isLoading: false,
   cities: [],
   currentCity: undefined,
-  getCity: (id: number) => new Promise(() => Promise),
-  createCity: (newCity: Partial<CityInterface>) => new Promise(() => Promise),
-  deleteCity: (id: number) => new Promise(() => Promise),
+  getCity: () => new Promise(() => Promise),
+  createCity: () => new Promise(() => Promise),
+  deleteCity: () => new Promise(() => Promise),
 });
 
 function CitiesProvider({ children }: PropsWithChildren) {
   const [cities, setCities] = useState<CityInterface[]>([]);
   const [isLoading, setIsloading] = useState(false);
-  const [currentCity, setCurrentCity] = useState<CityInterface>();
+  const [selectedCity, setSelectedCity] = useState<CityInterface>();
 
   useEffect(function () {
     async function getCities() {
@@ -51,7 +51,7 @@ function CitiesProvider({ children }: PropsWithChildren) {
       setIsloading(true);
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = (await res.json()) as CityInterface;
-      setCurrentCity(data);
+      setSelectedCity(data);
     } catch {
       alert("There was an error getting city");
     } finally {
@@ -70,9 +70,8 @@ function CitiesProvider({ children }: PropsWithChildren) {
         },
       });
       const data = (await res.json()) as CityInterface;
-      const isExisted = cities.find((item) => item.id === data.id);
-      !isExisted && setCities((prev) => [...prev, data]);
-      setCurrentCity(data);
+      setCities((prev) => [...prev, data]);
+      setSelectedCity(data);
     } catch {
       alert("There was an error creating city");
     } finally {
@@ -99,7 +98,7 @@ function CitiesProvider({ children }: PropsWithChildren) {
       value={{
         cities,
         isLoading,
-        currentCity,
+        currentCity: selectedCity,
         getCity,
         createCity,
         deleteCity,

@@ -25,16 +25,28 @@
       "id": 98443198
     },
     {
-      "cityName": "Eindhoven",
-      "country": "Netherlands (the)",
-      "emoji": "🇳🇱",
-      "date": "2023-07-29T10:02:15.089Z",
-      "notes": "kij",
+      "cityName": "Quer",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-07-30T19:21:12.382Z",
+      "notes": "brilliant city to spend your spare time with family and friends",
       "position": {
-        "lat": 51.387808168968434,
-        "lng": 5.537109375000001
+        "lat": 40.61636554530421,
+        "lng": -3.2958984375000004
       },
-      "id": 98443199
+      "id": 98443200
+    },
+    {
+      "cityName": "Ordes",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-07-30T19:28:00.226Z",
+      "notes": "fffffff",
+      "position": {
+        "lat": 43.1035254166485,
+        "lng": -8.371582031250002
+      },
+      "id": 98443201
     }
   ]
 }
