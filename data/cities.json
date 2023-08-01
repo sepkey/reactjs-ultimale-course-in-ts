@@ -23,30 +23,6 @@
         "lng": 2.3291015625000004
       },
       "id": 98443198
-    },
-    {
-      "cityName": "Quer",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-07-30T19:21:12.382Z",
-      "notes": "brilliant city to spend your spare time with family and friends",
-      "position": {
-        "lat": 40.61636554530421,
-        "lng": -3.2958984375000004
-      },
-      "id": 98443200
-    },
-    {
-      "cityName": "Bullange",
-      "country": "Belgium",
-      "emoji": "🇧🇪",
-      "date": "2023-07-30T20:54:01.152Z",
-      "notes": "mmmmmmmmmm",
-      "position": {
-        "lat": 50.332850883806756,
-        "lng": 6.39404296875
-      },
-      "id": 98443201
     }
   ]
 }
