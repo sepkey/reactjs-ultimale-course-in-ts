@@ -329,11 +329,28 @@
 //   </React.StrictMode>
 // );
 
-//////project -23
+// //////project -23
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p23-worldwise/App";
+// import "./index.css";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+////////project -24
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p23-worldwise/App";
-import "./index.css";
+import App from "./p24-react-quiz-context/components/App";
+import "./p24-react-quiz-context/index.css";
+import { QuizProvider } from "./p24-react-quiz-context/contexts/QuizContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -341,6 +358,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
+    <QuizProvider>
+      <App />
+    </QuizProvider>
   </React.StrictMode>
 );
