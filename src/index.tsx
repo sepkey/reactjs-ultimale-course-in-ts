@@ -345,12 +345,30 @@
 //   </React.StrictMode>
 // );
 
-////////project -24
+// ////////project -24
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p24-react-quiz-context/components/App";
+// import "./p24-react-quiz-context/index.css";
+// import { QuizProvider } from "./p24-react-quiz-context/contexts/QuizContext";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <QuizProvider>
+//       <App />
+//     </QuizProvider>
+//   </React.StrictMode>
+// );
+
+////////project -25
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p24-react-quiz-context/components/App";
-import "./p24-react-quiz-context/index.css";
-import { QuizProvider } from "./p24-react-quiz-context/contexts/QuizContext";
+import App from "./p25-atomic-blog/App-memo";
+import "./p25-atomic-blog/style.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -358,8 +376,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <QuizProvider>
-      <App />
-    </QuizProvider>
+    <App />
   </React.StrictMode>
 );
