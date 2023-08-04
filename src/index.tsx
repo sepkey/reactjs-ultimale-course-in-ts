@@ -367,7 +367,7 @@
 ////////project -25
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p25-atomic-blog/App-memo";
+import App from "./p25-atomic-blog/App";
 import "./p25-atomic-blog/style.css";
 
 const root = ReactDOM.createRoot(
