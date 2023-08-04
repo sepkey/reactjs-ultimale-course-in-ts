@@ -364,11 +364,27 @@
 //   </React.StrictMode>
 // );
 
-////////project -25
+// ////////project -25
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p25-atomic-blog/App";
+// import "./p25-atomic-blog/style.css";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+//////project -26
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p25-atomic-blog/App";
-import "./p25-atomic-blog/style.css";
+import App from "./p26-worldwise/App";
+import "./index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
