@@ -380,11 +380,27 @@
 //   </React.StrictMode>
 // );
 
-//////project -26
+// //////project -26
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p26-worldwise/App";
+// import "./index.css";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+//////project -27
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p26-worldwise/App";
-import "./index.css";
+import App from "./p27-workout-timer/App";
+import "./p27-workout-timer/index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
