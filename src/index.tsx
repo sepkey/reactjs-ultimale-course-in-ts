@@ -396,11 +396,28 @@
 //   </React.StrictMode>
 // );
 
+// //////project -27
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p27-workout-timer/App";
+// import "./p27-workout-timer/index.css";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
 //////project -27
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p27-workout-timer/App";
-import "./p27-workout-timer/index.css";
+import App from "./p28-redux-intro/App";
+import "./p28-redux-intro/index.css";
+import "./p28-redux-intro/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
