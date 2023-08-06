@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import clickSound from "./ClickSound.m4a";
 import { Workout } from "./App";
 type Props = {
@@ -18,11 +18,11 @@ function Calculator({ workouts, allowSound }: Props) {
   const mins = Math.floor(duration);
   const seconds = (duration - mins) * 60;
 
-  const playSound = function () {
-    if (!allowSound) return;
-    const sound = new Audio(clickSound);
-    sound.play();
-  };
+  // const playSound = useCallback(function () {
+  //   if (!allowSound) return;
+  //   const sound = new Audio(clickSound);
+  //   sound.play();
+  // }, [allowSound]);
 
   useEffect(
     function () {
@@ -37,6 +37,18 @@ function Calculator({ workouts, allowSound }: Props) {
   function handleDec() {
     setDuration((duration) => (duration > 1 ? Math.ceil(duration) - 1 : 0));
   }
+
+  useEffect(
+    function () {
+      const playsound = function () {
+        if (!allowSound) return;
+        const sound = new Audio(clickSound);
+        sound.play();
+      };
+      playsound();
+    },
+    [allowSound, duration]
+  );
   return (
     <>
       <form>
