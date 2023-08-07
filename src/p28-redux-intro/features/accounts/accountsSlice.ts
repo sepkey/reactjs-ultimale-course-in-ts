@@ -1,16 +1,4 @@
-type AccountState = {
-  balance: number;
-  loan: number;
-  loanPurposes: string;
-};
-type AccountActions =
-  | { type: "account/deposit"; payload: number }
-  | { type: "account/withdraw"; payload: number }
-  | {
-      type: "account/requestLoan";
-      payload: { purpose: string; amount: number };
-    }
-  | { type: "account/payLoan" };
+import { AccountActions, AccountState } from "../../type";
 
 const initialAccountState = {
   balance: 0,

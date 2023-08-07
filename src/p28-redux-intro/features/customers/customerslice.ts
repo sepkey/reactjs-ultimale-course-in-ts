@@ -1,15 +1,4 @@
-type CustomerState = {
-  fullName: string;
-  nationalId: string;
-  createdAt: string;
-};
-
-type CustomerActions =
-  | {
-      type: "costumer/createCustomer";
-      payload: { fullName: string; nationalId: string; createdAt: string };
-    }
-  | { type: "costumer/updateName"; payload: string };
+import { CustomerActions, CustomerState } from "../../type";
 
 const initialUserState: CustomerState = {
   createdAt: "",
