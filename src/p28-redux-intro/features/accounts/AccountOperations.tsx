@@ -18,7 +18,6 @@ function AccountOperations() {
     loan: currentLoan,
     loanPurposes: currentPurpose,
   } = useSelector((store: RootState) => store.account);
-  console.log(balance);
 
   function handleDeposit() {
     if (!depositAmount) return;
@@ -82,7 +81,7 @@ function AccountOperations() {
           <label>Request loan</label>
           <input
             type="number"
-            value={loanAmount}
+            value={loanAmount || ""}
             onChange={(e) => setLoanAmount(e.target.valueAsNumber)}
             placeholder="Loan amount"
           />
