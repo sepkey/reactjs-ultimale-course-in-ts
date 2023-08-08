@@ -412,7 +412,7 @@
 //   </React.StrictMode>
 // );
 
-//////project -27
+//////project -28
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./p28-redux-intro/App";
@@ -421,8 +421,8 @@ import store from "./p28-redux-intro/store";
 import { Provider } from "react-redux";
 
 //Works without react-redux:
-store.dispatch({ type: "account/deposit", payload: 565 });
-console.log(store.getState());
+// store.dispatch({ type: "account/deposit", payload: 565 });
+// console.log(store.getState());
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
