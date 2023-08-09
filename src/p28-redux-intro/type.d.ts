@@ -2,6 +2,7 @@ export type AccountState = {
   balance: number;
   loan: number;
   loanPurposes: string;
+  isLoading: boolean;
 };
 export type AccountActions =
   | { type: "account/deposit"; payload: number }
@@ -10,7 +11,8 @@ export type AccountActions =
       type: "account/requestLoan";
       payload: { purpose: string; amount: number };
     }
-  | { type: "account/payLoan" };
+  | { type: "account/payLoan" }
+  | { type: "account/convertingCurrency" };
 
 export type CustomerState = {
   fullName: string;
