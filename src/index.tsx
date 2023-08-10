@@ -412,17 +412,34 @@
 //   </React.StrictMode>
 // );
 
-//////project -28
+// //////project -28
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p28-redux-intro/App";
+// import "./p28-redux-intro/index.css";
+// import store from "./p28-redux-intro/store";
+// import { Provider } from "react-redux";
+
+// //Works without react-redux:
+// // store.dispatch({ type: "account/deposit", payload: 565 });
+// // console.log(store.getState());
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <Provider store={store}>
+//       <App />
+//     </Provider>
+//   </React.StrictMode>
+// );
+
+//////project -29
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p28-redux-intro/App";
-import "./p28-redux-intro/index.css";
-import store from "./p28-redux-intro/store";
-import { Provider } from "react-redux";
-
-//Works without react-redux:
-// store.dispatch({ type: "account/deposit", payload: 565 });
-// console.log(store.getState());
+import App from "./p29-Fast-Pizza/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -430,8 +447,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <App />
   </React.StrictMode>
 );
