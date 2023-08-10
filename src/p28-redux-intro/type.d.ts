@@ -31,3 +31,15 @@ export type RootState = {
   account: AccountState;
   customer: CustomerState;
 };
+
+export type Loan = {
+  purpose: string;
+  amount: number;
+};
+
+export type Currency = {
+  amount: number;
+  base: string;
+  date: String;
+  rates: { USD: number };
+};
