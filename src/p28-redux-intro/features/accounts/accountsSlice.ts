@@ -1,4 +1,5 @@
-import { AccountActions, AccountState } from "../../type";
+import { Dispatch } from "redux";
+import { AccountActions, AccountState, RootState } from "../../type";
 
 const initialAccountState = {
   balance: 0,
@@ -45,16 +46,25 @@ export default function accountReducer(
   }
 }
 
-export function deposit(amount: number, currency: string): any {
+type Currency = {
+  amount: number;
+  base: string;
+  date: String;
+  rates: { USD: number };
+};
+
+export function deposit(
+  amount: number,
+  currency: string
+): AccountActions | ((dispatch: Dispatch) => void) {
   if (currency === "USD") return { type: "account/deposit", payload: amount };
-  //TODO: check type
-  return async function (dispatch: any) {
+  return async function (dispatch: Dispatch) {
     dispatch({ type: "account/convertingCurrency" });
     const host = "api.frankfurter.app";
     const res = await fetch(
       `https://${host}/latest?amount=${amount}&from=${currency}&to=USD`
     );
-    const data = await res.json();
+    const data = (await res.json()) as Currency;
     const converted = data.rates.USD;
     dispatch({ type: "account/deposit", payload: converted });
   };
