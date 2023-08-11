@@ -1,5 +1,20 @@
-function Menu() {
-  return <h1>Menu</h1>;
+import { useLoaderData } from "react-router-dom";
+import { getMenu } from "../../services/apiRestaurant";
+import { Pizza } from "../../models/models";
+import MenuItem from "./MenuItem";
+
+export default function Menu() {
+  const menu = useLoaderData();
+  return (
+    <ul>
+      {(menu as Pizza[]).map((pizza) => (
+        <MenuItem key={pizza.id} pizza={pizza} />
+      ))}
+    </ul>
+  );
 }
 
-export default Menu;
+export async function loader() {
+  const menu = await getMenu();
+  return menu || null;
+}
