@@ -3,20 +3,19 @@ const API_URL = "http://localhost:8000";
 export async function getMenu() {
   const res = await fetch(`${API_URL}/food`);
 
-  // fetch won't throw error on 400 errors (e.g. when URL is wrong), so we need to do it manually. This will then go into the catch block, where the message is set
-  // if (!res.ok) throw Error("Failed getting menu");
+  if (!res.ok) throw Error("Failed getting menu");
 
   const data = await res.json();
   return data;
 }
 
-// export async function getOrder(id: string | number) {
-//   const res = await fetch(`${API_URL}/order/${id}`);
-//   if (!res.ok) throw Error(`Couldn't find order #${id}`);
+export async function getOrder(id: string) {
+  const res = await fetch(`${API_URL}/order/${id}`);
+  if (!res.ok) throw Error(`Couldn't find order #${id}`);
 
-//   const { data } = await res.json();
-//   return data;
-// }
+  const data = await res.json();
+  return data;
+}
 
 // export async function createOrder(newOrder: any) {
 //   try {
