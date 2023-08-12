@@ -1,3 +1,5 @@
+import { OrderType } from "../models/models";
+
 const API_URL = "http://localhost:8000";
 
 export async function getMenu() {
@@ -17,23 +19,31 @@ export async function getOrder(id: string) {
   return data;
 }
 
-// export async function createOrder(newOrder: any) {
-//   try {
-//     const res = await fetch(`${API_URL}/order`, {
-//       method: "POST",
-//       body: JSON.stringify(newOrder),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
+export async function getOrders() {
+  const res = await fetch(`${API_URL}/order`);
+  if (!res.ok) throw Error("Couldn't find orders ");
 
-//     if (!res.ok) throw Error();
-//     const { data } = await res.json();
-//     return data;
-//   } catch {
-//     throw Error("Failed creating your order");
-//   }
-// }
+  const data = await res.json();
+  return data;
+}
+
+export async function createOrder(newOrder: Partial<OrderType>) {
+  try {
+    const res = await fetch(`${API_URL}/order`, {
+      method: "POST",
+      body: JSON.stringify(newOrder),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) throw Error();
+    const { data } = await res.json();
+    return data;
+  } catch {
+    throw Error("Failed creating your order");
+  }
+}
 
 // export async function updateOrder(id: string | number, updateObj: any) {
 //   try {

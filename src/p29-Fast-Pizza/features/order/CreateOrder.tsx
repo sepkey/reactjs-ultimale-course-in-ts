@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { ActionFunctionArgs, Form, redirect } from "react-router-dom";
+import { Item, OrderType } from "../../models/models";
+import { createOrder, getOrders } from "../../services/apiRestaurant";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str: string) =>
@@ -37,8 +40,8 @@ function CreateOrder() {
   return (
     <div>
       <h2>Ready to order? Let's go!</h2>
-
-      <form>
+      {/* <Form method="post" action="/order/new"> */}
+      <Form method="post">
         <div>
           <label>First Name</label>
           <input type="text" name="customer" required />
@@ -70,11 +73,32 @@ function CreateOrder() {
         </div>
 
         <div>
+          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <button>Order now</button>
         </div>
-      </form>
+      </Form>
     </div>
   );
 }
 
+export async function action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  const order: Partial<OrderType> = {
+    ...data,
+    priority: data.priority === "on",
+    cart: JSON.parse(String(data.cart)),
+    estimatedDelivery: new Date().toISOString(),
+    position: "2.33230044",
+    orderPrice: Math.floor(Math.random() * 91) + 10,
+    priorityPrice: Math.floor(Math.random() * 91) + 5,
+  };
+
+  await createOrder(order);
+
+  const orders = (await getOrders()) as Partial<OrderType>[];
+  // console.log("spe--", orders.at(-1)?.id);
+  return redirect(`/order/${orders.at(-1)?.id}`);
+}
 export default CreateOrder;

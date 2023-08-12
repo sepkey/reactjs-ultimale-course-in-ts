@@ -7,16 +7,16 @@ export interface Item {
 }
 
 export interface OrderType {
-  id: string;
-  customer: string;
-  phone: string;
-  address: string;
-  priority: boolean;
   estimatedDelivery: string;
-  cart: Item[];
   position: string;
   orderPrice: number;
   priorityPrice: number;
+  priority: boolean;
+  phone: string;
+  customer: string;
+  id: string;
+  cart: Item[];
+  address: string;
 }
 
 export interface Pizza {
