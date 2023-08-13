@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { ActionFunctionArgs, Form, redirect } from "react-router-dom";
+import {
+  ActionFunctionArgs,
+  Form,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "react-router-dom";
 import { Item, OrderType } from "../../models/models";
 import { createOrder, getOrders } from "../../services/apiRestaurant";
 
@@ -36,6 +42,10 @@ const fakeCart = [
 function CreateOrder() {
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
+  const formErrors = useActionData() as Partial<ErrorsObject>;
 
   return (
     <div>
@@ -52,6 +62,7 @@ function CreateOrder() {
           <div>
             <input type="tel" name="phone" required />
           </div>
+          {formErrors?.phone && <p>{formErrors?.phone}</p>}
         </div>
 
         <div>
@@ -74,13 +85,17 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <button>Order now</button>
+          <button disabled={isSubmitting}>
+            {isSubmitting ? "Placing order..." : "Order now"}
+          </button>
         </div>
       </Form>
     </div>
   );
 }
-
+interface ErrorsObject {
+  phone: string;
+}
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
@@ -95,10 +110,18 @@ export async function action({ request }: ActionFunctionArgs) {
     priorityPrice: Math.floor(Math.random() * 91) + 5,
   };
 
+  const errors: Partial<ErrorsObject> = {};
+  if (!isValidPhone(order.phone!)) {
+    errors.phone =
+      "Please give us your phone number. We might need it to contact you.";
+  }
+
+  if (Object.keys(errors).length > 0) return errors;
+
   await createOrder(order);
 
   const orders = (await getOrders()) as Partial<OrderType>[];
-  // console.log("spe--", orders.at(-1)?.id);
+
   return redirect(`/order/${orders.at(-1)?.id}`);
 }
 export default CreateOrder;
