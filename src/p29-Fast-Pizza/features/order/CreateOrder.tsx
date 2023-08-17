@@ -54,13 +54,13 @@ function CreateOrder() {
       <Form method="post">
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <input className="input" type="text" name="customer" required />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input className="input" type="tel" name="phone" required />
           </div>
           {formErrors?.phone && <p>{formErrors?.phone}</p>}
         </div>
@@ -68,12 +68,13 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <input className="input" type="text" name="address" required />
           </div>
         </div>
 
         <div>
           <input
+            className="h-6 w-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2"
             type="checkbox"
             name="priority"
             id="priority"
@@ -123,8 +124,8 @@ export async function action({ request }: ActionFunctionArgs) {
 
   await createOrder(order);
 
-  // const orders = (await getOrders()) as Partial<OrderType>[];
+  const orders = (await getOrders()) as Partial<OrderType>[];
 
-  // return redirect(`/order/${orders.at(-1)?.id}`);
+  return redirect(`/order/${orders.at(-1)?.id}`);
 }
 export default CreateOrder;
