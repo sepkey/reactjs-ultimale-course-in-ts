@@ -2,7 +2,20 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: "Roboto Mono, monospace",
+    },
+    extend: {
+      colors: {
+        pizza: "#123456",
+      },
+      fontSize: {
+        huge: ["80rem", { lineHeight: "1" }],
+      },
+      height: {
+        screen: "100dvh",
+      },
+    },
   },
   plugins: [],
 };
