@@ -1,4 +1,5 @@
 import { Item } from "../../models/models";
+import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
 
 type Props = {
@@ -9,12 +10,13 @@ function CartItem({ item }: Props) {
   const { pizzaId, name, quantity, totalPrice } = item;
 
   return (
-    <li>
-      <p>
+    <li className="py-3 sm:flex sm:items-center sm:justify-between">
+      <p className="mb-1 sm:mb-0">
         {quantity}&times; {name}
       </p>
-      <div>
-        <p>{formatCurrency(totalPrice)}</p>
+      <div className="flex items-center sm:gap-6">
+        <p className="text-sm font-semibold">{formatCurrency(totalPrice)}</p>
+        <Button type="small">Delete</Button>
       </div>
     </li>
   );
