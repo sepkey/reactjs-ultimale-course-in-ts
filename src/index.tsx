@@ -387,13 +387,13 @@
 // import "./index.css";
 
 // const root = ReactDOM.createRoot(
-//   document.getElementById("root") as HTMLElement
+//   document.getElementById("root") as HTMLElement,
 // );
 
 // root.render(
 //   <React.StrictMode>
 //     <App />
-//   </React.StrictMode>
+//   </React.StrictMode>,
 // );
 
 // //////project -27
@@ -441,13 +441,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./p29-Fast-Pizza/App";
 import "./p29-Fast-Pizza/index.css";
+import { Provider } from "react-redux";
+import store from "./p29-Fast-Pizza/store";
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement,
 );
 
 root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
 );

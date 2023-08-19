@@ -3,7 +3,6 @@ import Button from "../../ui/Button";
 
 function CreateUser() {
   const [username, setUsername] = useState("");
-
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
   }

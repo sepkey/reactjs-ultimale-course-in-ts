@@ -9,13 +9,14 @@ export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
   const [email, setEmail] = useState("seorehiw@gmail.com");
   const [password, setPassword] = useState("20123");
+
   const { login, isAuthenticated, error } = useAuth();
   const navigate = useNavigate();
   useEffect(
     function () {
       if (isAuthenticated) navigate("/app", { replace: true });
     },
-    [isAuthenticated, navigate]
+    [isAuthenticated, navigate],
   );
 
   function handleSubmit(e: React.FormEvent) {
