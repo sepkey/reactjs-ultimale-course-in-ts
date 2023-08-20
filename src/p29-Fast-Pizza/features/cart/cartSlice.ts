@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Item } from "../../models/models";
-import { CartState } from "../../models/rtk-types";
+import { CartState, RootState } from "../../models/rtk-types";
 
 const initialState: CartState = {
-  cart: [
-    { pizzaId: 123, name: "testy", quantity: 2, unitPrice: 21, totalPrice: 42 },
-  ],
+  cart: [],
 };
 
 const cartSlice = createSlice({
@@ -47,6 +45,12 @@ export const {
   increaceItemQuantity,
 } = cartSlice.actions;
 export default cartSlice.reducer;
+
+export const getTotalCartQuantity = (state: RootState) =>
+  state.cart.cart.reduce((sum, cur) => cur.quantity + sum, 0);
+
+export const getTotalCartPrice = (state: RootState) =>
+  state.cart.cart.reduce((sum, cur) => cur.totalPrice + sum, 0);
 
 //   const existedInx = state.cart.findIndex(
 //     (itm) => itm.pizzaId === action.payload.pizzaId,
