@@ -1,5 +1,10 @@
+import { Item } from "./models";
+
 export type UserState = {
   username: string;
+};
+export type CartState = {
+  cart: Item[];
 };
 // export type AccountActions =
 //   | { type: "account/deposit"; payload: number }
@@ -13,4 +18,5 @@ export type UserState = {
 
 export type RootState = {
   user: UserState;
+  cart: CartState;
 };

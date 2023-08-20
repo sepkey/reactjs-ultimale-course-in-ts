@@ -1,9 +1,18 @@
 export interface Item {
-  quantity: number;
-  name: string;
-  totalPrice: number;
   pizzaId: number;
+  name: string;
   unitPrice: number;
+  quantity: number;
+  totalPrice: number;
+}
+
+export interface Pizza {
+  id: number;
+  name: string;
+  unitPrice: number;
+  ingredients: string[];
+  soldOut: boolean;
+  imageUrl: string;
 }
 
 export interface OrderType {
@@ -17,13 +26,4 @@ export interface OrderType {
   id: string;
   cart: Item[];
   address: string;
-}
-
-export interface Pizza {
-  id: string;
-  name: string;
-  unitPrice: number;
-  ingredients: string[];
-  soldOut: boolean;
-  imageUrl: string;
 }
