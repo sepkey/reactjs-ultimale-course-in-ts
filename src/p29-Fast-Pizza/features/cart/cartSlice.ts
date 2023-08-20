@@ -4,7 +4,9 @@ import { Item } from "../../models/models";
 import { CartState } from "../../models/rtk-types";
 
 const initialState: CartState = {
-  cart: [],
+  cart: [
+    { pizzaId: 123, name: "testy", quantity: 2, unitPrice: 21, totalPrice: 42 },
+  ],
 };
 
 const cartSlice = createSlice({
@@ -12,14 +14,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: PayloadAction<Item>) {
-      //   const existedInx = state.cart.findIndex(
-      //     (itm) => itm.pizzaId === action.payload.pizzaId,
-      //   );
-      //   if (existedInx === -1) {
       state.cart.push(action.payload);
-      //   } else {
-      //     state.cart[existedInx].quantity += 1;
-      //   }
     },
     deleteItem(state, action: PayloadAction<number>) {
       state.cart.filter((itm) => itm.pizzaId !== action.payload);
@@ -31,7 +26,7 @@ const cartSlice = createSlice({
       item.quantity++;
       item.totalPrice = item.quantity * item.unitPrice;
     },
-    deccreaceItemQuantity(state, action: PayloadAction<number>) {
+    decreaseItemQuantity(state, action: PayloadAction<number>) {
       const item = state.cart.find(
         (itm) => itm.pizzaId === action.payload,
       ) as Item;
@@ -47,8 +42,16 @@ const cartSlice = createSlice({
 export const {
   addItem,
   clearCart,
-  deccreaceItemQuantity,
+  decreaseItemQuantity: deccreaceItemQuantity,
   deleteItem,
   increaceItemQuantity,
 } = cartSlice.actions;
 export default cartSlice.reducer;
+
+//   const existedInx = state.cart.findIndex(
+//     (itm) => itm.pizzaId === action.payload.pizzaId,
+//   );
+//   if (existedInx === -1) {
+//   } else {
+//     state.cart[existedInx].quantity += 1;
+//   }

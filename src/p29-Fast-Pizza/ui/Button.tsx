@@ -1,10 +1,11 @@
-import { PropsWithChildren } from "react";
+import { MouseEventHandler, PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
 
 type Props = {
   disabled?: boolean;
   to?: `/${string}`;
   type?: keyof typeof styles;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const base =
@@ -21,6 +22,7 @@ export default function Button({
   disabled,
   to,
   type = "primary",
+  onClick,
 }: PropsWithChildren<Props>) {
   if (to) {
     return (
@@ -31,7 +33,7 @@ export default function Button({
   }
 
   return (
-    <button disabled={disabled} className={styles[type]}>
+    <button onClick={onClick} disabled={disabled} className={styles[type]}>
       {children}
     </button>
   );

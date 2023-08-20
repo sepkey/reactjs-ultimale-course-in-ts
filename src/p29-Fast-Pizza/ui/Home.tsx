@@ -17,7 +17,9 @@ function Home() {
       {username === "" ? (
         <CreateUser />
       ) : (
-        <Button to="/menu">Continue ordering, {username}!</Button>
+        <Button onClick={() => {}} to="/menu">
+          Continue ordering, {username}!
+        </Button>
       )}
     </div>
   );
