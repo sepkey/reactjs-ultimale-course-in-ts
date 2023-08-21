@@ -5,7 +5,7 @@ import { formatCurrency } from "../../utils/helpers";
 import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "../cart/DeleteItem";
 import { useSelector } from "react-redux";
-import { RootState } from "../../models/rtk-types";
+import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 
 type Props = {
   pizza: Pizza;
@@ -48,7 +48,13 @@ function MenuItem({ pizza }: Props) {
               Sold out
             </p>
           )}
-          {isInCart && <DeleteItem id={id} />}
+
+          {isInCart && (
+            <div className="flex items-center gap-3 sm:gap-8">
+              <UpdateItemQuantity pizzaId={id} />
+              <DeleteItem pizzaId={id} />
+            </div>
+          )}
 
           {!soldOut && !isInCart && (
             <Button onClick={handleAddToCart} type="small">

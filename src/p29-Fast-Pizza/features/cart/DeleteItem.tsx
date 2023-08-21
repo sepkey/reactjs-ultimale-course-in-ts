@@ -3,14 +3,14 @@ import Button from "../../ui/Button";
 import { deleteItem } from "./cartSlice";
 
 type Props = {
-  id: number;
+  pizzaId: number;
 };
 
-export default function DeleteItem({ id }: Props) {
+export default function DeleteItem({ pizzaId }: Props) {
   const dispatch = useDispatch();
 
   return (
-    <Button type="small" onClick={() => dispatch(deleteItem(id))}>
+    <Button type="small" onClick={() => dispatch(deleteItem(pizzaId))}>
       Delete
     </Button>
   );

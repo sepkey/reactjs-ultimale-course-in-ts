@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Item } from "../../models/models";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
-import { deleteItem } from "./cartSlice";
+import { deleteItem, getCurrentQuantityById } from "./cartSlice";
 import DeleteItem from "./DeleteItem";
+import UpdateItemQuantity from "./UpdateItemQuantity";
 
 type Props = {
   item: Item;
@@ -19,7 +20,8 @@ function CartItem({ item }: Props) {
       </p>
       <div className="flex items-center sm:gap-6">
         <p className="text-sm font-semibold">{formatCurrency(totalPrice)}</p>
-        <DeleteItem id={pizzaId} />
+        <UpdateItemQuantity pizzaId={pizzaId} />
+        <DeleteItem pizzaId={pizzaId} />
       </div>
     </li>
   );
