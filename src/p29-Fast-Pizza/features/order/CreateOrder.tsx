@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   ActionFunctionArgs,
   Form,
@@ -11,6 +10,11 @@ import { createOrder, getOrders } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
 import { RootState } from "../../models/rtk-types";
+import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
+import EmptyCart from "../cart/EmptyCart";
+import store from "../../store";
+import { formatCurrency } from "../../utils/helpers";
+import { useState } from "react";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str: string) =>
@@ -18,38 +22,18 @@ const isValidPhone = (str: string) =>
     str,
   );
 
-const fakeCart = [
-  {
-    pizzaId: 12,
-    name: "Mediterranean",
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32,
-  },
-  {
-    pizzaId: 6,
-    name: "Vegetale",
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13,
-  },
-  {
-    pizzaId: 11,
-    name: "Spinach and Mushroom",
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15,
-  },
-];
-
 function CreateOrder() {
-  // const [withPriority, setWithPriority] = useState(false);
-  const cart = fakeCart;
+  const [withPriority, setWithPriority] = useState(false);
+  const cart = useSelector(getCart);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   const username = useSelector((state: RootState) => state.user.username);
-
+  const totalCartPrice = useSelector(getTotalCartPrice);
+  const prioprityPrice = withPriority ? totalCartPrice * 0.2 : 0;
+  const totalPrice = totalCartPrice + prioprityPrice;
   const formErrors = useActionData() as Partial<ErrorsObject>;
+
+  if (!cart.length) return <EmptyCart />;
 
   return (
     <div className="px-4 py-6">
@@ -98,8 +82,8 @@ function CreateOrder() {
             type="checkbox"
             name="priority"
             id="priority"
-            // value={withPriority}
-            // onChange={(e) => setWithPriority(e.target.checked)}
+            value={withPriority ? "true" : "false"}
+            onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label className="font-medium" htmlFor="priority">
             Want to yo give your order priority?
@@ -109,7 +93,9 @@ function CreateOrder() {
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <Button type="primary" disabled={isSubmitting}>
-            {isSubmitting ? "Placing order..." : "Order now"}
+            {isSubmitting
+              ? "Placing order..."
+              : `Order now for ${formatCurrency(totalPrice)}`}
           </Button>
         </div>
       </Form>
@@ -121,16 +107,27 @@ interface ErrorsObject {
 }
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const data = Object.fromEntries(formData);
+  const data = Object.fromEntries(formData) as {
+    address: string;
+    cart: string;
+    customer: string;
+    phone: string;
+    priority: string;
+  };
+
+  const orderPrice = (JSON.parse(data.cart) as Item[]).reduce(
+    (sum, cur) => sum + cur.totalPrice,
+    0,
+  );
 
   const order: Partial<OrderType> = {
     ...data,
-    priority: data.priority === "on",
+    priority: data.priority === "true",
     cart: JSON.parse(String(data.cart)),
     estimatedDelivery: new Date().toISOString(),
     position: "2.33230044",
-    orderPrice: Math.floor(Math.random() * 91) + 10,
-    priorityPrice: Math.floor(Math.random() * 91) + 5,
+    orderPrice: orderPrice,
+    priorityPrice: data.priority === "true" ? orderPrice * 0.2 : 0,
   };
 
   const errors: Partial<ErrorsObject> = {};
@@ -145,6 +142,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
   const orders = (await getOrders()) as Partial<OrderType>[];
 
+  store.dispatch(clearCart());
   return redirect(`/order/${orders.at(-1)?.id}`);
 }
 export default CreateOrder;

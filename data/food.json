@@ -4,7 +4,13 @@
       "id": "390566",
       "name": "Chicken Fries",
       "unitPrice": 200,
-      "ingredients": ["mushroom", "egg", "chicken", "broccoli", "olive"],
+      "ingredients": [
+        "mushroom",
+        "egg",
+        "chicken",
+        "broccoli",
+        "olive"
+      ],
       "soldOut": true,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -12,7 +18,11 @@
       "id": "100001",
       "name": "Pepperoni",
       "unitPrice": 200,
-      "ingredients": ["tomato", "cheese", "pepperoni"],
+      "ingredients": [
+        "tomato",
+        "cheese",
+        "pepperoni"
+      ],
       "soldOut": false,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -20,7 +30,12 @@
       "id": "789012",
       "name": "Hawaiian",
       "unitPrice": 180,
-      "ingredients": ["tomato", "cheese", "ham", "pineapple"],
+      "ingredients": [
+        "tomato",
+        "cheese",
+        "ham",
+        "pineapple"
+      ],
       "soldOut": true,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -42,7 +57,13 @@
       "id": "901234",
       "name": "Meat Lovers",
       "unitPrice": 220,
-      "ingredients": ["tomato", "cheese", "pepperoni", "sausage", "bacon"],
+      "ingredients": [
+        "tomato",
+        "cheese",
+        "pepperoni",
+        "sausage",
+        "bacon"
+      ],
       "soldOut": false,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -50,7 +71,11 @@
       "id": "100123",
       "name": "Margherita",
       "unitPrice": 180,
-      "ingredients": ["tomato", "cheese", "basil"],
+      "ingredients": [
+        "tomato",
+        "cheese",
+        "basil"
+      ],
       "soldOut": false,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -58,7 +83,11 @@
       "id": "200234",
       "name": "Pepperoni",
       "unitPrice": 200,
-      "ingredients": ["tomato", "cheese", "pepperoni"],
+      "ingredients": [
+        "tomato",
+        "cheese",
+        "pepperoni"
+      ],
       "soldOut": false,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -66,16 +95,27 @@
       "id": "300345",
       "name": "Veggie Supreme",
       "unitPrice": 210,
-      "ingredients": ["tomato", "cheese", "onion", "bell pepper", "mushroom"],
+      "ingredients": [
+        "tomato",
+        "cheese",
+        "onion",
+        "bell pepper",
+        "mushroom"
+      ],
       "soldOut": true,
       "imageUrl": "https://picsum.photos/200"
     },
-
     {
       "id": "702330",
       "name": "Thi pizza",
       "unitPrice": 190,
-      "ingredients": ["tomato", "cheese", "pepperoni", "sausage", "bacon"],
+      "ingredients": [
+        "tomato",
+        "cheese",
+        "pepperoni",
+        "sausage",
+        "bacon"
+      ],
       "soldOut": false,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -83,7 +123,13 @@
       "id": "600567",
       "name": "Mushroom Deluxe",
       "unitPrice": 200,
-      "ingredients": ["tomato", "cheese", "mushroom", "olives", "onion"],
+      "ingredients": [
+        "tomato",
+        "cheese",
+        "mushroom",
+        "olives",
+        "onion"
+      ],
       "soldOut": false,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -91,7 +137,10 @@
       "id": "700678",
       "name": "Cheese Burst",
       "unitPrice": 230,
-      "ingredients": ["tomato", "double cheese"],
+      "ingredients": [
+        "tomato",
+        "double cheese"
+      ],
       "soldOut": false,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -99,7 +148,12 @@
       "id": "800789",
       "name": "Tandoori Chicken",
       "unitPrice": 240,
-      "ingredients": ["tomato", "cheese", "tandoori chicken", "onion"],
+      "ingredients": [
+        "tomato",
+        "cheese",
+        "tandoori chicken",
+        "onion"
+      ],
       "soldOut": false,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -107,7 +161,12 @@
       "id": "900890",
       "name": "Four Cheese",
       "unitPrice": 210,
-      "ingredients": ["mozzarella", "cheddar", "gouda", "blue cheese"],
+      "ingredients": [
+        "mozzarella",
+        "cheddar",
+        "gouda",
+        "blue cheese"
+      ],
       "soldOut": false,
       "imageUrl": "https://picsum.photos/200"
     },
@@ -115,7 +174,13 @@
       "id": "1001991",
       "name": "Supreme",
       "unitPrice": 230,
-      "ingredients": ["tomato", "cheese", "pepperoni", "sausage", "mushroom"],
+      "ingredients": [
+        "tomato",
+        "cheese",
+        "pepperoni",
+        "sausage",
+        "mushroom"
+      ],
       "soldOut": true,
       "imageUrl": "https://picsum.photos/200"
     }
@@ -432,40 +497,6 @@
       "id": "opBNpcY"
     },
     {
-      "customer": "birmi",
-      "phone": "096745",
-      "address": "oslatek",
-      "cart": [
-        {
-          "pizzaId": 12,
-          "name": "Mediterranean",
-          "quantity": 2,
-          "unitPrice": 16,
-          "totalPrice": 32
-        },
-        {
-          "pizzaId": 6,
-          "name": "Vegetale",
-          "quantity": 1,
-          "unitPrice": 13,
-          "totalPrice": 13
-        },
-        {
-          "pizzaId": 11,
-          "name": "Spinach and Mushroom",
-          "quantity": 1,
-          "unitPrice": 15,
-          "totalPrice": 15
-        }
-      ],
-      "priority": false,
-      "estimatedDelivery": "2023-08-12T03:50:13.430Z",
-      "position": "2.33230044",
-      "orderPrice": 75,
-      "priorityPrice": 68,
-      "id": "mA21sQE"
-    },
-    {
       "customer": "farima",
       "phone": "9374204336",
       "address": "چالوس ایت اله طالقانی",
@@ -500,106 +531,281 @@
       "id": "lq7RZmd"
     },
     {
-      "customer": "biboo",
-      "phone": "dildo",
-      "address": "kkkk",
+      "customer": "diego",
+      "phone": "9374204336",
+      "address": "maradin",
+      "priority": true,
       "cart": [
         {
-          "pizzaId": 12,
-          "name": "Mediterranean",
-          "quantity": 2,
-          "unitPrice": 16,
-          "totalPrice": 32
+          "pizzaId": "100001",
+          "name": "Pepperoni",
+          "quantity": 1,
+          "unitPrice": 200,
+          "totalPrice": 200
         },
         {
-          "pizzaId": 6,
-          "name": "Vegetale",
+          "pizzaId": "345678",
+          "name": "Vegetarian",
           "quantity": 1,
-          "unitPrice": 13,
-          "totalPrice": 13
-        },
-        {
-          "pizzaId": 11,
-          "name": "Spinach and Mushroom",
-          "quantity": 1,
-          "unitPrice": 15,
-          "totalPrice": 15
+          "unitPrice": 190,
+          "totalPrice": 190
         }
       ],
-      "priority": false,
-      "estimatedDelivery": "2023-08-12T04:09:19.505Z",
+      "estimatedDelivery": "2023-08-21T18:15:36.745Z",
       "position": "2.33230044",
-      "orderPrice": 67,
-      "priorityPrice": 76,
-      "id": "mltnp2F"
+      "orderPrice": 75,
+      "priorityPrice": 52,
+      "id": "z-Z1dWU"
     },
     {
-      "customer": "ioi",
-      "phone": "9090990",
-      "address": "چالوس ایت اله طالقانی",
+      "customer": "Kamiar",
+      "phone": "9374204336",
+      "address": "slsmsl",
+      "priority": true,
       "cart": [
         {
-          "pizzaId": 12,
-          "name": "Mediterranean",
-          "quantity": 2,
-          "unitPrice": 16,
-          "totalPrice": 32
+          "pizzaId": "100001",
+          "name": "Pepperoni",
+          "quantity": 1,
+          "unitPrice": 200,
+          "totalPrice": 200
         },
         {
-          "pizzaId": 6,
-          "name": "Vegetale",
+          "pizzaId": "345678",
+          "name": "Vegetarian",
           "quantity": 1,
-          "unitPrice": 13,
-          "totalPrice": 13
-        },
-        {
-          "pizzaId": 11,
-          "name": "Spinach and Mushroom",
-          "quantity": 1,
-          "unitPrice": 15,
-          "totalPrice": 15
+          "unitPrice": 190,
+          "totalPrice": 190
         }
       ],
-      "priority": false,
-      "estimatedDelivery": "2023-08-17T18:19:09.698Z",
+      "estimatedDelivery": "2023-08-21T18:28:52.962Z",
       "position": "2.33230044",
-      "orderPrice": 40,
-      "priorityPrice": 36,
-      "id": "-BI2Yel"
+      "orderPrice": 18,
+      "priorityPrice": 30,
+      "id": "N8CSPWr"
     },
     {
-      "customer": "ioo",
+      "customer": "Kamiar",
       "phone": "9374204336",
       "address": "چالوس ایت اله طالقانی",
       "cart": [
         {
-          "pizzaId": 12,
-          "name": "Mediterranean",
+          "pizzaId": "100001",
+          "name": "Pepperoni",
+          "quantity": 1,
+          "unitPrice": 200,
+          "totalPrice": 200
+        },
+        {
+          "pizzaId": "345678",
+          "name": "Vegetarian",
           "quantity": 2,
-          "unitPrice": 16,
-          "totalPrice": 32
-        },
-        {
-          "pizzaId": 6,
-          "name": "Vegetale",
-          "quantity": 1,
-          "unitPrice": 13,
-          "totalPrice": 13
-        },
-        {
-          "pizzaId": 11,
-          "name": "Spinach and Mushroom",
-          "quantity": 1,
-          "unitPrice": 15,
-          "totalPrice": 15
+          "unitPrice": 190,
+          "totalPrice": 380
         }
       ],
       "priority": false,
-      "estimatedDelivery": "2023-08-18T05:28:47.753Z",
+      "estimatedDelivery": "2023-08-21T18:39:21.018Z",
       "position": "2.33230044",
-      "orderPrice": 91,
-      "priorityPrice": 67,
-      "id": "-O2pZS4"
+      "orderPrice": 580,
+      "priorityPrice": 94,
+      "id": "tTelxvH"
+    },
+    {
+      "customer": "Kamiar",
+      "phone": "9374204336",
+      "address": "Zhib Zhab",
+      "cart": [
+        {
+          "pizzaId": "901234",
+          "name": "Meat Lovers",
+          "quantity": 2,
+          "unitPrice": 220,
+          "totalPrice": 440
+        },
+        {
+          "pizzaId": "100123",
+          "name": "Margherita",
+          "quantity": 1,
+          "unitPrice": 180,
+          "totalPrice": 180
+        }
+      ],
+      "priority": false,
+      "estimatedDelivery": "2023-08-21T18:40:19.500Z",
+      "position": "2.33230044",
+      "orderPrice": 620,
+      "priorityPrice": 69,
+      "id": "Xj7j7rb"
+    },
+    {
+      "customer": "Kamiar",
+      "phone": "9374204336",
+      "address": "magase",
+      "cart": [
+        {
+          "pizzaId": "100001",
+          "name": "Pepperoni",
+          "quantity": 1,
+          "unitPrice": 200,
+          "totalPrice": 200
+        },
+        {
+          "pizzaId": "345678",
+          "name": "Vegetarian",
+          "quantity": 5,
+          "unitPrice": 190,
+          "totalPrice": 950
+        }
+      ],
+      "priority": false,
+      "estimatedDelivery": "2023-08-21T18:43:20.339Z",
+      "position": "2.33230044",
+      "orderPrice": 1150,
+      "priorityPrice": 0,
+      "id": "xjOt-Qc"
+    },
+    {
+      "customer": "Kamiar",
+      "phone": "9374204336",
+      "address": "magase",
+      "priority": true,
+      "cart": [
+        {
+          "pizzaId": "100001",
+          "name": "Pepperoni",
+          "quantity": 1,
+          "unitPrice": 200,
+          "totalPrice": 200
+        },
+        {
+          "pizzaId": "345678",
+          "name": "Vegetarian",
+          "quantity": 4,
+          "unitPrice": 190,
+          "totalPrice": 760
+        }
+      ],
+      "estimatedDelivery": "2023-08-21T18:44:10.922Z",
+      "position": "2.33230044",
+      "orderPrice": 960,
+      "priorityPrice": 12,
+      "id": "_3LNSlD"
+    },
+    {
+      "customer": "Kamiar",
+      "phone": "9374204336",
+      "address": "چالوس ایت اله طالقانی",
+      "priority": true,
+      "cart": [
+        {
+          "pizzaId": "100001",
+          "name": "Pepperoni",
+          "quantity": 1,
+          "unitPrice": 200,
+          "totalPrice": 200
+        },
+        {
+          "pizzaId": "901234",
+          "name": "Meat Lovers",
+          "quantity": 1,
+          "unitPrice": 220,
+          "totalPrice": 220
+        },
+        {
+          "pizzaId": "600567",
+          "name": "Mushroom Deluxe",
+          "quantity": 2,
+          "unitPrice": 200,
+          "totalPrice": 400
+        }
+      ],
+      "estimatedDelivery": "2023-08-21T18:56:42.665Z",
+      "position": "2.33230044",
+      "orderPrice": 820,
+      "priorityPrice": 12,
+      "id": "LDYYDKS"
+    },
+    {
+      "customer": "Kamiar",
+      "phone": "9374204336",
+      "address": "چالوس ایت اله طالقانی",
+      "priority": true,
+      "cart": [
+        {
+          "pizzaId": "345678",
+          "name": "Vegetarian",
+          "quantity": 3,
+          "unitPrice": 190,
+          "totalPrice": 570
+        },
+        {
+          "pizzaId": "901234",
+          "name": "Meat Lovers",
+          "quantity": 4,
+          "unitPrice": 220,
+          "totalPrice": 880
+        }
+      ],
+      "estimatedDelivery": "2023-08-21T19:58:25.483Z",
+      "position": "2.33230044",
+      "orderPrice": 1450,
+      "priorityPrice": 12,
+      "id": "vxyg-3p"
+    },
+    {
+      "customer": "amir",
+      "phone": "9374204336",
+      "address": "چالوس ایت اله طالقانی",
+      "priority": true,
+      "cart": [
+        {
+          "pizzaId": "345678",
+          "name": "Vegetarian",
+          "quantity": 1,
+          "unitPrice": 190,
+          "totalPrice": 190
+        },
+        {
+          "pizzaId": "901234",
+          "name": "Meat Lovers",
+          "quantity": 1,
+          "unitPrice": 220,
+          "totalPrice": 220
+        }
+      ],
+      "estimatedDelivery": "2023-08-21T20:01:47.502Z",
+      "position": "2.33230044",
+      "orderPrice": 410,
+      "priorityPrice": 82,
+      "id": "2GizeV4"
+    },
+    {
+      "customer": "lusi",
+      "phone": "9374204336",
+      "address": "magase",
+      "priority": true,
+      "cart": [
+        {
+          "pizzaId": "100001",
+          "name": "Pepperoni",
+          "quantity": 1,
+          "unitPrice": 200,
+          "totalPrice": 200
+        },
+        {
+          "pizzaId": "345678",
+          "name": "Vegetarian",
+          "quantity": 1,
+          "unitPrice": 190,
+          "totalPrice": 190
+        }
+      ],
+      "estimatedDelivery": "2023-08-21T20:30:47.841Z",
+      "position": "2.33230044",
+      "orderPrice": 390,
+      "priorityPrice": 78,
+      "id": "xonIkZU"
     }
   ]
 }
