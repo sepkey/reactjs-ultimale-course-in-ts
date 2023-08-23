@@ -15,6 +15,10 @@ import EmptyCart from "../cart/EmptyCart";
 import store from "../../store";
 import { formatCurrency } from "../../utils/helpers";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchAddress } from "../user/userSlice";
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "redux";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str: string) =>
@@ -25,6 +29,7 @@ const isValidPhone = (str: string) =>
 function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
   const cart = useSelector(getCart);
+  const dispatch: ThunkDispatch<RootState, void, Action> = useDispatch();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   const username = useSelector((state: RootState) => state.user.username);
@@ -38,6 +43,8 @@ function CreateOrder() {
   return (
     <div className="px-4 py-6">
       <h2 className="mb-8 text-xl font-semibold">Ready to order? Let's go!</h2>
+
+      <button onClick={() => dispatch(fetchAddress())}>get pos</button>
       {/* <Form method="post" action="/order/new"> */}
       <Form method="post">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
