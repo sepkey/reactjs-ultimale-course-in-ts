@@ -2,6 +2,10 @@ import { Item } from "./models";
 
 export type UserState = {
   username: string;
+  status: "idle" | "loading" | "error";
+  position: { latitude: number; longitude: number };
+  address: string;
+  error: string;
 };
 export type CartState = {
   cart: Item[];
