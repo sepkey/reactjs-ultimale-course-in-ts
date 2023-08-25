@@ -7,7 +7,7 @@ type Props = {
   ingredients?: string[];
 };
 
-function OrderItem({ item }: Props) {
+function OrderItem({ item, ingredients, isLoadingIngredients }: Props) {
   const { quantity, name, totalPrice } = item;
 
   return (
@@ -17,6 +17,9 @@ function OrderItem({ item }: Props) {
           <span className="font-bold">{quantity}&times;</span> {name}
         </p>
         <p className="font-bold">{formatCurrency(totalPrice)}</p>
+        <p className="text-sm capitalize italic text-stone-500">
+          {isLoadingIngredients ? "loading..." : ingredients?.join(", ")}
+        </p>
       </div>
     </li>
   );
