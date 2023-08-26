@@ -873,6 +873,26 @@
       "orderPrice": 1000,
       "priorityPrice": 0,
       "id": "w0tfyHR"
+    },
+    {
+      "customer": "okan",
+      "phone": "434343442",
+      "address": "magase",
+      "cart": [
+        {
+          "pizzaId": "345678",
+          "name": "Vegetarian",
+          "quantity": 2,
+          "unitPrice": 190,
+          "totalPrice": 380
+        }
+      ],
+      "position": "2.33230044",
+      "priority": true,
+      "estimatedDelivery": "2023-08-26T18:29:51.204Z",
+      "orderPrice": 380,
+      "priorityPrice": 0,
+      "id": "o-zybuR"
     }
   ]
 }

@@ -45,20 +45,19 @@ export async function createOrder(newOrder: Partial<OrderType>) {
   }
 }
 
-// export async function updateOrder(id: string | number, updateObj: any) {
-//   try {
-//     const res = await fetch(`${API_URL}/order/${id}`, {
-//       method: "PATCH",
-//       body: JSON.stringify(updateObj),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
+export async function updateOrder(id: string, updateObj: Partial<OrderType>) {
+  try {
+    const res = await fetch(`${API_URL}/order/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(updateObj),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-//     if (!res.ok) throw Error();
-//     // We don't need the data, so we don't return anything
-//   } catch (err) {
-//     throw Error("Failed updating your order");
-//   }
-// }
+    if (!res.ok) throw Error();
+  } catch (err) {
+    throw Error("Failed updating your order");
+  }
+}
 //TODO: type any
