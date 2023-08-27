@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, Params, useFetcher } from "react-router-dom";
+import { Params, useFetcher } from "react-router-dom";
 import { OrderType } from "../../models/models";
 import Button from "../../ui/Button";
 import { updateOrder } from "../../services/apiRestaurant";
