@@ -2,12 +2,7 @@ import { styled } from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
 import { Button } from "./ui/Button";
 import Input from "./ui/Input";
-
-const H1 = styled.h1`
-  font-size: 30px;
-  font-weight: 600;
-  background-color: #87ae45;
-`;
+import Heading from "./ui/Heading";
 
 const StyledApp = styled.div`
   background-color: orangered;
@@ -18,7 +13,10 @@ export default function App() {
     <>
       <GlobalStyles />
       <StyledApp>
-        <H1>The wild Sepide</H1>
+        <Heading as="h1">The wild Sepide</Heading>
+        <Heading as="h2">Tired Sepide</Heading>
+        <Heading as="h3">blowed Sepide</Heading>
+
         <Button>Check in</Button>
         <Input />
       </StyledApp>
