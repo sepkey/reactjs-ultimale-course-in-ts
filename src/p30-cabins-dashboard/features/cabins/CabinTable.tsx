@@ -34,7 +34,7 @@ export default function CabinTable() {
     data: cabins,
     isLoading,
     error,
-  } = useQuery({ queryKey: ["cabin"], queryFn: getCabins });
+  } = useQuery({ queryKey: ["cabins"], queryFn: getCabins });
 
   if (isLoading) return <Spinner />;
   return (
@@ -45,7 +45,6 @@ export default function CabinTable() {
         <div>Capacity</div>
         <div>Price</div>
         <div>Discount</div>
-        <div></div>
       </TableHeader>
       {(cabins as ICabin[])?.map((cabin) => (
         <CabinRow key={cabin.id} cabin={cabin} />
