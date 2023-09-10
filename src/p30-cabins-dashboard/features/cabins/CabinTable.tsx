@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { getCabins } from "../../services/apiCabins";
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
-import { ICabin } from "../../models";
+import { IFetchedCabin } from "../../models";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -46,7 +46,7 @@ export default function CabinTable() {
         <div>Price</div>
         <div>Discount</div>
       </TableHeader>
-      {(cabins as ICabin[])?.map((cabin) => (
+      {(cabins as IFetchedCabin[])?.map((cabin) => (
         <CabinRow key={cabin.id} cabin={cabin} />
       ))}
     </Table>

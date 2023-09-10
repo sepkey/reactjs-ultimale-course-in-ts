@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ICabin } from "../../models";
+import { IFetchedCabin } from "../../models";
 import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCabin } from "../../services/apiCabins";
@@ -45,7 +45,7 @@ const Discount = styled.div`
 `;
 
 type Props = {
-  cabin: ICabin;
+  cabin: IFetchedCabin;
 };
 
 export default function CabinRow({ cabin }: Props) {

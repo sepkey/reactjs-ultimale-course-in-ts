@@ -4,10 +4,16 @@ export interface INewCabin {
   regularPrice: number;
   discount: number;
   description: string;
+  image: FileList;
 }
 
-export interface ICabin extends INewCabin {
+export interface IFetchedCabin {
   id: number;
   created_at: string;
+  name: string;
+  maxCapacity: number;
+  regularPrice: number;
+  discount: number;
+  description: string;
   image: string;
 }
