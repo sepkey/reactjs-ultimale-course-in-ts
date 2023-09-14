@@ -12,7 +12,7 @@ export async function getSettings() {
 }
 
 // We expect a newSetting object that looks like {setting: newValue}
-export async function updateSetting(newSetting: ISettings) {
+export async function updateSetting(newSetting: Partial<ISettings>) {
   const { data, error } = await supabase
     .from("settings")
     .update(newSetting)
