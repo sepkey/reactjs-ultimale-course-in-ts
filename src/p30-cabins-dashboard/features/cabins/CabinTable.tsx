@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
-import { IFetchedCabin } from "../../models";
+import { IFetchedCabin } from "../../cabins.interface";
 import useCabins from "./useCabins";
 
 const Table = styled.div`

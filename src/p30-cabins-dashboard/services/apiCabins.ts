@@ -1,4 +1,4 @@
-import { INewCabin } from "../models";
+import { INewCabin } from "../cabins.interface";
 import supabase, { supabaseUrl } from "./supabase";
 
 export async function getCabins() {

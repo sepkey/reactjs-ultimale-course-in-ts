@@ -1,3 +1,4 @@
+import { ISettings } from "../settings.interface";
 import supabase from "./supabase";
 
 export async function getSettings() {
@@ -7,11 +8,11 @@ export async function getSettings() {
     console.error(error);
     throw new Error("Settings could not be loaded");
   }
-  return data;
+  return data as ISettings;
 }
 
 // We expect a newSetting object that looks like {setting: newValue}
-export async function updateSetting(newSetting) {
+export async function updateSetting(newSetting: ISettings) {
   const { data, error } = await supabase
     .from("settings")
     .update(newSetting)

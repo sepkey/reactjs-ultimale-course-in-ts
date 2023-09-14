@@ -39,7 +39,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "json-server --watch data/food.json --port 8000 --delay 500",
-    "gen-types": "npx supabase gen types typescript --linked > Types/supabase.ts"
+    "gen-types": "npx supabase gen types typescript --linked > src/p30-cabins-dashboard/types/supabase.ts"
   },
   "eslintConfig": {
     "extends": [
