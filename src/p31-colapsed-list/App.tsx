@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
 import { faker } from "@faker-js/faker";
 import "./styles.css";
+import withToggles from "./HOC";
 
 interface IProduct {
   productName: string;
@@ -63,7 +64,7 @@ function CompanyItem({
   );
 }
 
-type ListProps<T> = {
+export type ListProps<T> = {
   title: string;
   items: T[];
   render: (item: T) => ReactNode;
@@ -97,6 +98,16 @@ function List<T>({ title, items, render }: ListProps<T>) {
   );
 }
 
+function ProductList({ title, items }: { title: string; items: IProduct[] }) {
+  return (
+    <ul className="list">
+      {items.map((product) => (
+        <ProductItem key={product.productName} product={product} />
+      ))}
+    </ul>
+  );
+}
+const ProductListWithToggles = withToggles(ProductList);
 export default function App() {
   return (
     <div>
@@ -123,17 +134,13 @@ export default function App() {
           )}
         />
       </div>
+
+      <div className="col-2">
+        <ProductList title="Products HOC" items={products} />
+        <ProductListWithToggles title="Products HOC" items={products} />
+      </div>
     </div>
   );
 }
 
 // LATER: Let's say we got this component from a 3rd-party library, and can't change it. But we still want to add the 2 toggle functionalities to it
-function ProductList({ title, items }: { title: string; items: IProduct[] }) {
-  return (
-    <ul className="list">
-      {items.map((product) => (
-        <ProductItem key={product.productName} product={product} />
-      ))}
-    </ul>
-  );
-}
