@@ -486,10 +486,25 @@
 //   </React.StrictMode>,
 // );
 
-//////project -32
+// //////project -32
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p32-compound-components/App";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement,
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+// );
+
+//////project -33
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p32-compound-components/App";
+import App from "./p33-cabins-dashboard/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
