@@ -456,10 +456,25 @@
 //   </React.StrictMode>,
 // );
 
-//////project -29
+// //////project -30
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p30-cabins-dashboard/App";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement,
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+// );
+
+//////project -31
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p30-cabins-dashboard/App";
+import App from "./p31-colapsed-list/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
