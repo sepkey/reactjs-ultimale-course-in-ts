@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 
@@ -57,7 +58,7 @@ export default function Modal({
 }: PropsWithChildren<{
   onClose: () => void;
 }>) {
-  return (
+  return createPortal(
     <Overlay>
       <StyledModal>
         <Button onClick={onClose}>
@@ -65,6 +66,7 @@ export default function Modal({
         </Button>
         {children}
       </StyledModal>
-    </Overlay>
+    </Overlay>,
+    document.body,
   );
 }
