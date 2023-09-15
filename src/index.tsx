@@ -471,10 +471,25 @@
 //   </React.StrictMode>,
 // );
 
-//////project -31
+// //////project -31
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./p31-render-props-HOC/App";
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement,
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+// );
+
+//////project -32
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./p31-colapsed-list/App";
+import App from "./p32-compound-components/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
