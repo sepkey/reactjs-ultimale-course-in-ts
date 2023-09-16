@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useContext } from "react";
+import { PropsWithChildren, ReactNode, createContext, useContext } from "react";
 import styled from "styled-components";
 type CommonRowProps = {
   columns: string;
@@ -96,7 +96,15 @@ function Row({ children }: PropsWithChildren) {
   );
 }
 
-function Body({ children }: PropsWithChildren) {}
+type BodyProps<T> = {
+  data: T[];
+  render: (item: T) => ReactNode;
+};
+
+function Body<T>({ data, render }: BodyProps<T>) {
+  if (!data.length) return <Empty>No data to show at the moment</Empty>;
+  return <StyledBody>{data.map(render)}</StyledBody>;
+}
 
 Table.Header = Header;
 Table.Row = Row;

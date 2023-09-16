@@ -35,9 +35,13 @@ export default function CabinTable() {
         <div>Price</div>
         <div>Discount</div>
       </Table.Header>
-      {(cabins as IFetchedCabin[])?.map((cabin) => (
+      <Table.Body
+        data={cabins as IFetchedCabin[]}
+        render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />}
+      />
+      {/* {(cabins as IFetchedCabin[])?.map((cabin) => (
         <CabinRow key={cabin.id} cabin={cabin} />
-      ))}
+      ))} */}
     </Table>
   );
 }
