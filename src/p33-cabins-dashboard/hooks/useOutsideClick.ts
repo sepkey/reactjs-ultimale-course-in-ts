@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react";
 
-export default function useOutsideClick(
+export default function useOutsideClick<T extends HTMLElement>(
   closeFn: () => void,
   listenCapturing: boolean = true,
 ) {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<T | null>(null);
 
   useEffect(
     function () {
       function handleClick(e: MouseEvent) {
-        if (ref.current && !ref.current.contains(e.target as Node)) {
+        if (ref.current && !(ref.current as T).contains(e.target as Node)) {
           closeFn();
         }
       }
