@@ -91,7 +91,6 @@ function Menus({ children }: PropsWithChildren) {
   const [position, setPosition] = useState<{ x: number; y: number } | null>(
     null,
   );
-
   const close = () => setOpenId("");
   const open = setOpenId;
 

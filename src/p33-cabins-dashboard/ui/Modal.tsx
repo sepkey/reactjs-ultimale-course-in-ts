@@ -103,7 +103,6 @@ type WindowProps = {
 };
 function Window({ children, name }: PropsWithChildren<WindowProps>) {
   const { openName, close } = useContext(ModalContext);
-
   const ref = useOutsideClick<HTMLDivElement>(close);
 
   if (name !== openName) return null;
