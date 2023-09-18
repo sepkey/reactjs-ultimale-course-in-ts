@@ -1,10 +1,12 @@
+import { useSearchParams } from "react-router-dom";
+
 import useCabins from "./useCabins";
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 import Table from "../../ui/Table";
-import { IFetchedCabin } from "../../cabins.interface";
 import Menus from "../../ui/Menus";
-import { useSearchParams } from "react-router-dom";
+import { IFetchedCabin } from "../../models/cabins.interface";
+
 type Filters = "all" | "no-discount" | "with-discount";
 
 export default function CabinTable() {
@@ -12,6 +14,7 @@ export default function CabinTable() {
   const [searchParams] = useSearchParams();
   if (isLoading) return <Spinner />;
 
+  //Filter
   const filterValue = (searchParams.get("discount") as Filters) || "all";
   let filteredCabins: IFetchedCabin[];
   if (filterValue === "all") {
@@ -27,6 +30,19 @@ export default function CabinTable() {
       (item) => item.discount! > 0,
     ) as IFetchedCabin[];
   }
+
+  // Sort
+  const sortBy = searchParams.get("sortBy") || "starttDate-asc";
+  const [field, direction] = sortBy.split("-");
+
+  const modifier = direction === "asc" ? 1 : -1;
+  const sortedCabins = filteredCabins!.sort(
+    (a, b) =>
+      (Number(a[field as keyof IFetchedCabin]) -
+        Number(b[field as keyof IFetchedCabin])) *
+      modifier,
+  );
+
   return (
     <Menus>
       <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
@@ -38,7 +54,7 @@ export default function CabinTable() {
           <div>Discount</div>
         </Table.Header>
         <Table.Body
-          data={filteredCabins!}
+          data={sortedCabins}
           render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />}
         />
       </Table>

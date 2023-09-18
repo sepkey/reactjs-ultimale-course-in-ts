@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
-import { IFetchedCabin } from "../../cabins.interface";
 import useCabins from "./useCabins";
+import { IFetchedCabin } from "../../models/cabins.interface";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);

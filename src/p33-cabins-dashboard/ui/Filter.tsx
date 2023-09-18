@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { OperationItem } from "../models/models";
 
 const StyledFilter = styled.div`
   border: 1px solid var(--color-grey-100);
@@ -12,7 +13,7 @@ const StyledFilter = styled.div`
 `;
 
 type FilterButtonProps = {
-  active: boolean;
+  active: "true" | "false";
 };
 
 const FilterButton = styled.button<FilterButtonProps>`
@@ -20,7 +21,7 @@ const FilterButton = styled.button<FilterButtonProps>`
   border: none;
 
   ${(props) =>
-    props.active &&
+    props.active === "true" &&
     css`
       background-color: var(--color-brand-600);
       color: var(--color-brand-50);
@@ -39,10 +40,9 @@ const FilterButton = styled.button<FilterButtonProps>`
   }
 `;
 type Props = {
-  options: FilterType[];
+  options: OperationItem[];
   filterField: string;
 };
-type FilterType = { value: string; label: string };
 
 export default function Filter({ options, filterField }: Props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -59,7 +59,8 @@ export default function Filter({ options, filterField }: Props) {
         <FilterButton
           key={option.value}
           onClick={() => handleClick(option.value)}
-          active={option.value === currentFilter}
+          active={option.value === currentFilter ? "true" : "false"}
+          disabled={option.value === currentFilter}
         >
           {option.label}
         </FilterButton>

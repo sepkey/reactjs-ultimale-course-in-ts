@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { IFetchedCabin } from "../../cabins.interface";
 import { formatCurrency } from "../../utils/helpers";
 import CreateCabinForm from "./CreateCabinForm";
 import useDeleteCabin from "./useDeleteCabin";
@@ -10,6 +9,7 @@ import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import { IFetchedCabin } from "../../models/cabins.interface";
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -56,7 +56,7 @@ type Props = {
 
 export default function CabinRow({ cabin }: Props) {
   const { isDeleting, deleteCabin } = useDeleteCabin();
-  const { createCabin, isCreating } = useCreateCabin();
+  const { createCabin } = useCreateCabin();
 
   const {
     image,

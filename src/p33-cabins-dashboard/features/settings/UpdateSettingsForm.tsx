@@ -1,4 +1,4 @@
-import { ISettings } from "../../settings.interface";
+import { ISettings } from "../../models/settings.interface";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";

@@ -1,4 +1,4 @@
-import { ISettings } from "../settings.interface";
+import { ISettings } from "../models/settings.interface";
 import supabase from "./supabase";
 
 export async function getSettings() {
