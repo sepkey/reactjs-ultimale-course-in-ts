@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { StatusMap } from "../features/bookings/BookingRow";
 
-const Tag = styled.span`
+type TagsProp = { type: StatusMap };
+const Tag = styled.span<TagsProp>`
   width: fit-content;
   text-transform: uppercase;
   font-size: 1.1rem;

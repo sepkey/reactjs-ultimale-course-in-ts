@@ -6,6 +6,7 @@ import Table from "../../ui/Table";
 
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
+import { IBookingRow } from "../../models/bookings.interface";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -34,6 +35,12 @@ const Amount = styled.div`
   font-weight: 500;
 `;
 
+type Props = { booking: IBookingRow };
+export enum StatusMap {
+  "unconfirmed" = "blue",
+  "checked-in" = "green",
+  "checked-out" = "silver",
+}
 function BookingRow({
   booking: {
     id: bookingId,
@@ -47,12 +54,12 @@ function BookingRow({
     guests: { fullName: guestName, email },
     cabins: { name: cabinName },
   },
-}) {
-  const statusToTagName = {
-    unconfirmed: "blue",
-    "checked-in": "green",
-    "checked-out": "silver",
-  };
+}: Props) {
+  // const statusToTagName: StatusToTagName = {
+  //   unconfirmed: "blue",
+  //   "checked-in": "green",
+  //   "checked-out": "silver",
+  // };
 
   return (
     <Table.Row>
@@ -76,7 +83,7 @@ function BookingRow({
         </span>
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+      <Tag type={StatusMap[status]}>{status.replace("-", " ")}</Tag>
 
       <Amount>{formatCurrency(totalPrice)}</Amount>
     </Table.Row>

@@ -6,13 +6,13 @@ import CabinRow from "./CabinRow";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import { IFetchedCabin } from "../../models/cabins.interface";
+import Empty from "../../ui/Empty";
 
 type Filters = "all" | "no-discount" | "with-discount";
 
 export default function CabinTable() {
   const { cabins, isLoading } = useCabins();
   const [searchParams] = useSearchParams();
-  if (isLoading) return <Spinner />;
 
   //Filter
   const filterValue = (searchParams.get("discount") as Filters) || "all";
@@ -42,6 +42,10 @@ export default function CabinTable() {
         Number(b[field as keyof IFetchedCabin])) *
       modifier,
   );
+
+  if (isLoading) return <Spinner />;
+
+  if (!cabins?.length) return <Empty resourceName="cabins" />;
 
   return (
     <Menus>
