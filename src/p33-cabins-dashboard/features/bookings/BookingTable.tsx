@@ -5,6 +5,7 @@ import Empty from "../../ui/Empty";
 import useBookings from "./useBookings";
 import Spinner from "../../ui/Spinner";
 import { IBookingRow, IFetchedBooking } from "../../models/bookings.interface";
+import Pagination from "../../ui/Pagination";
 
 function BookingTable() {
   const { bookings, isLoading } = useBookings();
@@ -45,6 +46,9 @@ function BookingTable() {
             return <BookingRow key={booking.id} booking={customBooking} />;
           }}
         />
+        <Table.Footer>
+          <Pagination count={bookings.length} />
+        </Table.Footer>
       </Table>
     </Menus>
   );
