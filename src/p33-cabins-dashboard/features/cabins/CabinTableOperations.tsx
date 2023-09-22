@@ -1,5 +1,5 @@
-import Filter from "../../ui/Filter";
 import Sortby from "../../ui/Sortby";
+import Filter from "../../ui/Filter";
 import TableOperations from "../../ui/TableOperations";
 
 export default function CabinTableOperations() {
@@ -34,7 +34,6 @@ export default function CabinTableOperations() {
             label: "Sort by capacity (first high)",
           },
         ]}
-        value="hi"
       />
     </TableOperations>
   );

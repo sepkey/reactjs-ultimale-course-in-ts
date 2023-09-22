@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { OperationItem } from "../models/models";
 import Select from "./Select";
 
-type Props = { options: OperationItem[]; value: string };
+type Props = { options: OperationItem[]; value?: string };
 
 export default function Sortby({ options, value }: Props) {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -16,7 +16,7 @@ export default function CabinTable() {
 
   //Filter
   const filterValue = (searchParams.get("discount") as Filters) || "all";
-  let filteredCabins: IFetchedCabin[];
+  let filteredCabins: IFetchedCabin[] = [];
   if (filterValue === "all") {
     filteredCabins = cabins as IFetchedCabin[];
   }
@@ -32,11 +32,11 @@ export default function CabinTable() {
   }
 
   // Sort
-  const sortBy = searchParams.get("sortBy") || "starttDate-asc";
+  const sortBy = searchParams.get("sortBy") || "startDate-asc";
   const [field, direction] = sortBy.split("-");
 
   const modifier = direction === "asc" ? 1 : -1;
-  const sortedCabins = filteredCabins!.sort(
+  const sortedCabins = filteredCabins?.sort(
     (a, b) =>
       (Number(a[field as keyof IFetchedCabin]) -
         Number(b[field as keyof IFetchedCabin])) *
