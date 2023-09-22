@@ -11,10 +11,12 @@ export default function useCabins() {
       ? null
       : { field: "status", value: filterValue };
 
-  const sortBy = searchParams.get("sortBy") || "startDate-asc";
+  const sortByRaw = searchParams.get("sortBy") || "startDate-desc";
+  const [field, direction] = sortByRaw.split("-");
+  const sortBy = { field, direction };
 
   const { data: bookings, isLoading } = useQuery({
-    queryKey: ["bookings", filter],
+    queryKey: ["bookings", filter, sortBy],
     queryFn: () => getBookings({ filter, sortBy }),
   });
   return { bookings, isLoading };
