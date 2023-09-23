@@ -7,6 +7,10 @@ import Table from "../../ui/Table";
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
 import { IBookingRow } from "../../models/bookings.interface";
+import { StatusMap } from "../../models/models";
+import Menus from "../../ui/Menus";
+import { HiEye } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -36,11 +40,7 @@ const Amount = styled.div`
 `;
 
 type Props = { booking: IBookingRow };
-export enum StatusMap {
-  "unconfirmed" = "blue",
-  "checked-in" = "green",
-  "checked-out" = "silver",
-}
+
 function BookingRow({
   booking: {
     id: bookingId,
@@ -55,12 +55,7 @@ function BookingRow({
     cabins: { name: cabinName },
   },
 }: Props) {
-  // const statusToTagName: StatusToTagName = {
-  //   unconfirmed: "blue",
-  //   "checked-in": "green",
-  //   "checked-out": "silver",
-  // };
-
+  const navigate = useNavigate();
   return (
     <Table.Row>
       <Cabin>{cabinName}</Cabin>
@@ -78,7 +73,7 @@ function BookingRow({
           &rarr; {numNights} night stay
         </span>
         <span>
-          {format(new Date(startDate), "MMM dd yyyy")} &mdash;{" "}
+          {format(new Date(startDate), "MMM dd yyyy")} &mdash;
           {format(new Date(endDate), "MMM dd yyyy")}
         </span>
       </Stacked>
@@ -86,6 +81,18 @@ function BookingRow({
       <Tag type={StatusMap[status]}>{status.replace("-", " ")}</Tag>
 
       <Amount>{formatCurrency(totalPrice)}</Amount>
+
+      <Menus.Menu>
+        <Menus.Toggle id={bookingId} />
+        <Menus.List id={bookingId}>
+          <Menus.Button
+            icon={HiEye}
+            onClick={() => navigate(`/bookings/${bookingId}`)}
+          >
+            See details
+          </Menus.Button>
+        </Menus.List>
+      </Menus.Menu>
     </Table.Row>
   );
 }

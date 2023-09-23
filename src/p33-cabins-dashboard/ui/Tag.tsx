@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StatusMap } from "../features/bookings/BookingRow";
+import { StatusMap } from "../models/models";
 
 type TagsProp = { type: StatusMap };
 const Tag = styled.span<TagsProp>`
