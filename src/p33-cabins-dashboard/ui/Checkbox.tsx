@@ -28,7 +28,7 @@ const StyledCheckbox = styled.div`
 type Props = {
   checked: boolean;
   onChange: () => void;
-  disabled: boolean;
+  disabled?: boolean;
   id: number | string;
 };
 function Checkbox({
