@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 const StyledCheckbox = styled.div`
@@ -24,18 +25,29 @@ const StyledCheckbox = styled.div`
     gap: 0.8rem;
   }
 `;
-
-function Checkbox({ checked, onChange, disabled = false, id, children }) {
+type Props = {
+  checked: boolean;
+  onChange: () => void;
+  disabled: boolean;
+  id: number | string;
+};
+function Checkbox({
+  checked,
+  onChange,
+  disabled = false,
+  id,
+  children,
+}: PropsWithChildren<Props>) {
   return (
     <StyledCheckbox>
       <input
         type="checkbox"
-        id={id}
+        id={String(id)}
         checked={checked}
-        onChange={onChange}
         disabled={disabled}
+        onChange={onChange}
       />
-      <label htmlFor={!disabled ? id : ""}>{children}</label>
+      <label htmlFor={!disabled ? String(id) : ""}>{children}</label>
     </StyledCheckbox>
   );
 }

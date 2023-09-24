@@ -1,3 +1,4 @@
+import { IBookingDetail } from "../models/bookings.interface";
 import { PAGE_SIZE } from "../utils/constants";
 import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
@@ -112,7 +113,7 @@ export async function getStaysTodayActivity() {
   return data;
 }
 
-export async function updateBooking(id: number, obj: any) {
+export async function updateBooking(id: number, obj: Partial<IBookingDetail>) {
   const { data, error } = await supabase
     .from("bookings")
     .update(obj)
