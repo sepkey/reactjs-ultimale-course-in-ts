@@ -13,6 +13,8 @@ import useBooking from "./useBooking";
 import { StatusMap } from "../../models/models";
 import { IBookingDetail, Status } from "../../models/bookings.interface";
 import { useNavigate } from "react-router-dom";
+import { HiArrowUpOnSquare } from "react-icons/hi2";
+import useCheckout from "../check-in-out/useCheckout";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -22,6 +24,8 @@ const HeadingGroup = styled.div`
 
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
+  const { checkout, isChekingOut } = useCheckout();
+
   const { status, id: bookingId } = booking || {};
 
   const customBooking: IBookingDetail = {
@@ -66,6 +70,15 @@ function BookingDetail() {
       <BookingDataBox booking={customBooking} />
 
       <ButtonGroup>
+        {status === "checked-in" && (
+          <Button
+            // icon={HiArrowUpOnSquare}
+            onClick={() => checkout(bookingId!)}
+            disabled={isChekingOut}
+          >
+            Check out
+          </Button>
+        )}
         {status === "unconfirmed" && (
           <Button onClick={() => navigate(`/checkin/${bookingId}`)}>
             Check in
