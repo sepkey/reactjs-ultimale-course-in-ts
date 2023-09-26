@@ -11,10 +11,11 @@ const FullPage = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 export default function ProtectedRoute({ children }: PropsWithChildren) {
   const navigate = useNavigate();
   // 1 Load the authenticated user
-  const { isLoading, isAuthenticated } = useUser();
+  const { isLoading, user, isAuthenticated } = useUser();
 
   // 3 If ther is no authenticated user redirect to the login
   useEffect(
@@ -32,6 +33,6 @@ export default function ProtectedRoute({ children }: PropsWithChildren) {
       </FullPage>
     );
   // 4 If there is a user render the app
-  return <>{children}</>;
+  return isAuthenticated ? <>{children}</> : null;
   //   return null;
 }
