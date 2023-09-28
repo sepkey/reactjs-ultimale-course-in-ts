@@ -1,25 +1,26 @@
 import { useForm } from "react-hook-form";
-import Button from "../../ui/Button0";
+import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
+import useUpdateUser from "./useUpdateUser";
 
-import { useUpdateUser } from "./useUpdateUser";
-
+type FormValues = { password: string; passwordConfirm: string };
 function UpdatePasswordForm() {
-  const { register, handleSubmit, formState, getValues, reset } = useForm();
+  const { register, handleSubmit, formState, getValues, reset } =
+    useForm<FormValues>();
   const { errors } = formState;
 
   const { updateUser, isUpdating } = useUpdateUser();
 
-  function onSubmit({ password }) {
-    updateUser({ password }, { onSuccess: reset });
+  function onSubmit({ password }: FormValues) {
+    updateUser({ password }, { onSuccess: () => reset() });
   }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow
-        label="Password (min 8 characters)"
+        label="New password (min 8 characters)"
         error={errors?.password?.message}
       >
         <Input
@@ -54,7 +55,7 @@ function UpdatePasswordForm() {
         />
       </FormRow>
       <FormRow>
-        <Button onClick={reset} type="reset" variation="secondary">
+        <Button onClick={() => reset()} type="reset" variation="secondary">
           Cancel
         </Button>
         <Button disabled={isUpdating}>Update password</Button>
