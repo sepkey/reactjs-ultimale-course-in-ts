@@ -151,7 +151,7 @@ function BookingDataBox({ booking }: Props) {
           {format(new Date(startDate || ""), "EEE, MMM dd yyyy")} (
           {isToday(new Date(startDate || ""))
             ? "Today"
-            : formatDistanceFromNow(startDate)}
+            : formatDistanceFromNow(startDate ?? "")}
           ) &mdash; {format(new Date(endDate || ""), "EEE, MMM dd yyyy")}
         </p>
       </Header>
@@ -184,11 +184,11 @@ function BookingDataBox({ booking }: Props) {
 
         <Price isPaid={isPaid ? "true" : "false"}>
           <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}>
-            {formatCurrency(totalPrice)}
+            {formatCurrency(totalPrice || 0)}
 
             {hasBreakfast &&
-              ` (${formatCurrency(cabinPrice)} cabin + ${formatCurrency(
-                extraPrice,
+              ` (${formatCurrency(cabinPrice || 0)} cabin + ${formatCurrency(
+                extraPrice || 0,
               )} breakfast)`}
           </DataItem>
 
